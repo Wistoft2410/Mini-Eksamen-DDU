@@ -6,13 +6,22 @@
 </head>
 <body>
     <h1> Velkommen til hjemmesiden </h1>
-    <p> Skriv dit navn </p>
+    <p> Elev: </p>
 
-    <form action="/login" method='POST'>
+    <form action="/student_login" method='POST'>
         <input type="text" id="name" name="name">
         <br><br>
 
         <button type="submit">Login</button>
     </form>
+
+    <p> Lærer:</p>
+    <form action="/teacher_login" method='POST'>
+        <input type="text" id="name" name="name">
+        <br><br>
+
+        <button type="submit">Login</button>
+    </form>
+
 </body>
 </html>
