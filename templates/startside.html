@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel ="stylesheet" href="stylesheet.css"/>
+    <link rel="stylesheet" href="../static/styles/stylesheet.css"/> 
     <title>student</title>
 </head>
 <body>
-    <h1> Velkommen til hjemmesiden </h1>
-    <p> Skriv dit navn </p>
+    <h1> Tryk start for at starte din test </h1>
+    <p> Din test vil være i faget mat </p>
+<b> </b>
+<p> dato <span id="datetime"></span> </p>
 
-    <form action="/login" method='POST'>
-        <input type="text" id="name" name="name">
+    <form action="/test" method='POST'>
+        <input type="text" id="start" name="start">
         <br><br>
 
-        <button type="submit">Login</button>
+        <button type="submit">start</button>
     </form>
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+
+</script>
+
+
 </body>
 </html>

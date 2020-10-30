@@ -1,9 +1,15 @@
 body {
-    background: powderblue;
-  }
+
+  background: powderblue;
+  }  
+    
+  
   h1 {
-    color: blue;
+    text-align: center;
+    color:red;
   }
   p {
+ text-align: center;
+
     color: red;
   }
