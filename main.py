@@ -23,5 +23,9 @@ def start():
 def test():
     return render_template('test.html')
 
+    @app.route('/resultat', methods=('GET', 'POST'))
+def test():
+    return render_template('resultat.html')
+
 if __name__ == '__main__':
     app.run()
