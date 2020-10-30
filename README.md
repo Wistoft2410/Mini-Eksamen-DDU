@@ -4,6 +4,11 @@
 ### Deadline: ??/??-??:??
 ### Navn på hjemmeside/projekt: 
 
+### Hvordan kører man hjemmesiden?
+
+installer Python.
+Derefter installer Flask, wheel og peewee
+
 ### Alle links:
 
 [Burndownchart](https://docs.google.com/spreadsheets/d/12GrolWbVKDg1Wu-nvA1gK3bWTYi4yTNMDA7evywdAyM/edit?usp=sharing)
