@@ -1,9 +1,10 @@
 body {
 
-  background: powderblue;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background: powderblue; /*baggrundsfarve*/
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /*Font familie til baggrunden*/
   }  
     
+  /*button attributes*/
 button {
 background-color: cornsilk;
 width: 10%;
@@ -12,7 +13,7 @@ padding: 15px;
 margin: 10px 0px;
 border: none
 }
-button:hover {   
+button:hover {   /*Når man hover over button*/
   opacity: 0.7;   
 }
 .container {   
