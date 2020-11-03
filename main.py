@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -29,7 +29,9 @@ def resultatet():
 
 @app.route('/teacher_login', methods=('GET', 'POST'))
 def teacher():
-    return render_template('teacher_login.html')
+    name = request.form['name']
+    print(name)
+    return render_template('teacher_login.html', namelol=name)
 
 if __name__ == '__main__':
     app.run()
