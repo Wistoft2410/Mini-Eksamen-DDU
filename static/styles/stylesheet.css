@@ -8,8 +8,14 @@ body {
       display: block;
       margin-right: auto;
       margin-left: auto;
-    
   }
+
+  #knap {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
 
   h1 {
     text-align: center;
