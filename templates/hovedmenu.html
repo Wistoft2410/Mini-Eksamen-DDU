@@ -1,29 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../static/styles/stylesheet.css"/> 
+    <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
     <title>Hovedmenu</title>
 </head>
 <body>
     <h1> Velkommen til hjemmesiden </h1>
-    <h4>Hvis du er elev klik her </h2>
-    <p> Elev: </p>
+    <h4>Hvis du er elev klik  <a href="/student_login"> her </a> </h2>
 
-    <form action="/student_login" method='POST'>
-        <!--<input type="button" id="name" name="name">-->
-        <br><br>
 
-        <button type="submit" id ="knap">Login</button>
-    </form>
-
-    <h4> Hvis du er lærer klik her</h4>
-    <p> Lærer:</p>
-    <form action="/teacher_login" method='POST'>
-       <!-- <input type="text" id="name" name="name">-->
-        <br><br>
-
-        <button type="submit" id ="knap">Login</button>
-    </form>
+    <h4> Hvis du er lærer klik <a href="/teacher_login"> her </a> </h4>
 
 </body>
 </html>
