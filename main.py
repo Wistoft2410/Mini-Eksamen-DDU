@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from db import Student, DB
 
 app = Flask(__name__)
 
@@ -21,6 +22,10 @@ def start():
 
 @app.route('/test', methods=('GET', 'POST'))
 def testen():
+    students = [student.username for student in Student.select()]
+    print(len(students))
+    print()
+    print(students)
     return render_template('test.html')
 
 @app.route('/resultat', methods=('GET', 'POST'))
@@ -33,5 +38,19 @@ def teacher():
     print(name)
     return render_template('teacher_login.html', namelol=name)
 
+
+# For hver gang der bliver kørt en request bliver denne funktion kørt først 
+@app.before_request
+def before_request():
+    DB.connect()
+
+# For hver gang der bliver kørt en request bliver denne funktion kørt efter request'en 
+@app.after_request
+def after_request(response):
+    DB.close()
+    return response
+
+
 if __name__ == '__main__':
     app.run()
+

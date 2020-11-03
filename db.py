@@ -11,7 +11,48 @@ DB = PostgresqlDatabase('dae8653ftqev6r',
                                    host=HOST, 
                                    port=PORT)
 
+
+class Class(Model):
+    name = CharField()
+
+    class Meta:
+        database = DB
+
+
+class Student(Model):
+    username = CharField()
+    #email = CharField()
+    #password = CharField()
+    #Class = ForeignKeyField(Class, backref="students")
+
+    class Meta:
+        database = DB
+
+#class Question(Model):
+#    questionText = CharField()
+#    answer1 = CharField()
+#    answer2 = CharField()
+
+
+class Teacher(Model):
+    username = CharField()
+    email = CharField()
+    password = CharField()
+
+    class Meta:
+        database = DB
+
+
+class teacherClassRelationship(Model):
+    teacher = ForeignKeyField(Teacher)
+    clazz = ForeignKeyField(Class)
+
+    class Meta:
+        database = DB
+
+
 if __name__ == '__main__':
     DB.connect()
-    DB.create_tables([], safe=True)
+    DB.create_tables([Class, Student, Teacher, teacherClassRelationship], safe=True)
     DB.close()
+
