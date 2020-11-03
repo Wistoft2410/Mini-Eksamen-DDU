@@ -20,6 +20,10 @@ def student():
 def start():
     return render_template('startside.html')
 
+@app.route('/signup', methods=('GET', 'POST'))
+def signup():
+    return render_template('signup.html')
+
 @app.route('/test', methods=('GET', 'POST'))
 def testen():
     students = [student.username for student in Student.select()]
@@ -39,12 +43,12 @@ def teacher():
     return render_template('teacher_login.html', namelol=name)
 
 
-# For hver gang der bliver kørt en request bliver denne funktion kørt først 
+# For hver gang der bliver kørt en request bliver denne funktion kørt først
 @app.before_request
 def before_request():
     DB.connect()
 
-# For hver gang der bliver kørt en request bliver denne funktion kørt efter request'en 
+# For hver gang der bliver kørt en request bliver denne funktion kørt efter request'en
 @app.after_request
 def after_request(response):
     DB.close()
@@ -53,4 +57,3 @@ def after_request(response):
 
 if __name__ == '__main__':
     app.run()
-

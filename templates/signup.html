@@ -4,28 +4,28 @@
     <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
 
 
-<title>student_login </title>
+<title>Signup</title>
 
 </head>
 <body>
-    <h1>Login som elev </h1>
-
-    <p>login siden </p>
+    <h1>Register</h1>
 
     <form action="/startside" method='POST'>
         <div class ="container">
-        <label> Brugernavn:</label>
+        <label>Brugernavn:</label>
             <input type="text" placeholder ="Brugernavn" id="name" name="name" required><br>
 
             <br></br>
-        <label> Kodeord: </label>
+        <label>Kodeord:</label>
+        <input type="password"placeholder ="Kodeord" id="code" name="code" required><br>
+        <label>Kodeord igen:</label>
         <input type="password"placeholder ="Kodeord" id="code" name="code" required><br>
         <br></br>
-        <button type="submit"  id ="knap">Login</button>
+        <button type="submit"  id ="knap">Register</button>
         </div>
     </form>
 
-<a href="/signup"> register </a>
+
 
 
 
