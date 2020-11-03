@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../static/styles/stylesheet.css"/> 
+    <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
     <title>student</title>
 </head>
 <body>
-    <h1> Tryk start for at starte din test </h1>
+    <h1> Hej, {{ name }} tryk start for at starte din test </h1>
     <p> Din test vil være i faget mat </p>
 <b> </b>
 <p> dato <span id="datetime"></span> </p>
 
     <form action="/test" method='POST'>
-        <input type="text" id="name" name="start">
-        <br><br>
-
-        <button type="submit" id ="knap">start</button>
+        <button type="submit" id ="knap">start test</button>
     </form>
 <script>
 var dt = new Date();
