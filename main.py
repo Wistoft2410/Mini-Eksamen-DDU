@@ -26,11 +26,7 @@ def signup():
 
 @app.route('/test', methods=('GET', 'POST'))
 def testen():
-    students = [student.username for student in Student.select()]
-    print(len(students))
-    print()
-    print(students)
-    return render_template('test.html')
+    return render_template('test.html', students=Student.select())
 
 @app.route('/resultat', methods=('GET', 'POST'))
 def resultatet():
