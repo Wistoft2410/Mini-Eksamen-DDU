@@ -55,6 +55,7 @@ Derefter skal du installere alle de pakker der står i requirements.txt filen i 
 #### Hvordan kører jeg hjemmesiden så?
 Det er meget simpelt du skal bare befinde dig i rodmappen af dette repository og eksekvere følgende kommando:
 **du** skal **stadig** sørge for at have python miljøet aktiveret!:
+
 `flask run`
 
 ### Alle links:
