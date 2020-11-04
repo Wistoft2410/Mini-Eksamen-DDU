@@ -4,10 +4,59 @@
 ### Deadline: ??/??-??:??
 ### Navn på hjemmeside/projekt: 
 
-### Hvordan kører man hjemmesiden?
 
-installer Python.
-Derefter installer Flask, wheel og peewee
+
+### Hvordan kører man hjemmesiden lokalt?
+
+#### Først og fremmest er der noget man skal installere
+
+Installer Python på dit operativsystem, sørg for at du har adgang til
+og kan bruge python3 kommandoen i din terminal/kommandoprompt!
+
+Alle de ting du bliver præsenteret for er noget du skal gøre i din terminal/kommandoprompt
+
+Først skal du clone det her repository:
+`git clone https://github.com/gulfurs/Mini-Eksamen-DDU`
+
+Det første du skal gøre er at lave et virtuelt python miljø i samme mappe som det klonet repository!:
+`Python3 -m pip venv env`
+
+#### Windows
+Hvis du er på Windows så gør følgende:
+
+Tilføje følgende linjer til activate.bat filen der befinder sig i følgende mappe sti: ./env/Scripts/
+`set FLASK_ENV=development`
+`set FLASK_APP=main.py`
+
+Du bliver nok nødt til at [installere postgressql](https://www.postgresql.org/download/windows/) og tilføje den til din "path" ligesom med Python
+
+Nu skal du aktivere dit nye python miljø:
+Skriv activate.bat inden i ./env/Scripts/ og tryk enter
+
+Derefter skal du installere alle de pakker der står i requirements.txt filen i det her repository.
+**du** skal **stadig** sørge for at have python miljøet aktiveret!:
+`pip3 install -r requirements.txt`
+
+#### MacOS/Linux
+Hvis du er på MacOS eller Linux så gør følgende:
+
+Tilføje følgende linjer til activate filen der befinder sig i følgende mappe sti: ./env/bin/
+`export FLASK_ENV=development`
+`export FLASK_APP=main.py`:
+
+Nu skal du aktivere dit nye python miljø:
+Skriv activate inden i ./env/bin/ og tryk enter
+
+Derefter skal du installere alle de pakker der står i requirements.txt filen i det her repository.
+**du** skal **stadig** sørge for at have python miljøet aktiveret!:
+`pip3 install -r requirements.txt`
+
+
+#### Hvordan kører jeg hjemmesiden så?
+Det er meget simpelt du skal bare befinde dig i rodmappen af dette repository og eksekvere følgende kommando:
+**du** skal **stadig** sørge for at have python miljøet aktiveret!:
+
+`flask run`
 
 ### Alle links:
 
