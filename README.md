@@ -38,11 +38,19 @@ Derefter skal du installere alle de pakker der står i requirements.txt filen i 
 `pip3 install -r requirements.txt`
 
 #### MacOS/Linux
-Hvis du er på MacOS, :W
+Hvis du er på MacOS eller Linux så gør følgende:
 
-Tilføje følgende linjer til activate.bat filen der befinder sig i følgende mappe sti: ./env/Scripts/
-`set FLASK_ENV=development`
-`set FLASK_APP=main.py`
+Tilføje følgende linjer til activate filen der befinder sig i følgende mappe sti: ./env/bin/
+`export FLASK_ENV=development`
+`export FLASK_APP=main.py`:
+
+Nu skal du aktivere dit nye python miljø:
+Skriv activate inden i ./env/bin/ og tryk enter
+
+Derefter skal du installere alle de pakker der står i requirements.txt filen i det her repository.
+**du** skal **stadig** sørge for at have python miljøet aktiveret!:
+`pip3 install -r requirements.txt`
+
 
 #### Hvordan kører jeg hjemmesiden så?
 Det er meget simpelt du skal bare befinde dig i rodmappen af dette repository og eksekvere følgende kommando:
