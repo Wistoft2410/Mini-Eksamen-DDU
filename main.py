@@ -23,11 +23,11 @@ def start():
 @app.route('/signup', methods=('GET', 'POST'))
 def signup():
     if request.method == 'POST':
-        name      = request.args.get('name')
-        email     = request.args.get('email')
-        password  = request.args.get('password')
-        password2 = request.args.get('password2')
-        checkbox  = request.args.get('teacher')
+        name      = request.form.get('name')
+        email     = request.form.get('email')
+        password  = request.form.get('password')
+        password2 = request.form.get('password2')
+        checkbox  = request.form.get('teacher')
 
         if checkbox:
             Teacher.create(username=name, email=email, password=password)
