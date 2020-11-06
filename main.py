@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from db import Student, DB
+from db import Student, DB, simpleQuestion
 
 app = Flask(__name__)
 
@@ -26,7 +26,7 @@ def signup():
 
 @app.route('/test', methods=('GET', 'POST'))
 def testen():
-    return render_template('test.html', students=Student.select())
+    return render_template('test.html', question=simpleQuestion.select().where(simpleQuestion.id == 1).get())
 
 @app.route('/resultat', methods=('GET', 'POST'))
 def resultatet():
