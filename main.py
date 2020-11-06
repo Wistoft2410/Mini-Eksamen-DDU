@@ -29,12 +29,17 @@ def signup():
         password2 = request.form.get('password2')
         checkbox  = request.form.get('teacher')
 
-        if checkbox:
-            Teacher.create(username=name, email=email, password=password)
+        if password == password2:
+            if checkbox:
+                Teacher.create(username=name, email=email, password=password)
+            else:
+                Student.create(username=name, email=email, password=password)
+            return render_template('signup.html', error=False)
         else:
-            Student.create(username=name, email=email, password=password)
+            return render_template('signup.html', error=True)
+    return render_template('signup.html', error=False)
 
-    return render_template('signup.html')
+
 
 @app.route('/test', methods=('GET', 'POST'))
 def testen():

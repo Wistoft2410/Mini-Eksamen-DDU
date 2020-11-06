@@ -19,6 +19,10 @@
             <label>Email:</label>
             <input type="email" placeholder="Email" name="email" required><br>
 
+            {% if error %}
+                <p>Adgangskoderne skal være ens!</p>
+            {% endif %}
+
             <label>Kodeord:</label>
             <input type="password" placeholder="Kodeord" name="password" required><br>
 
