@@ -1,7 +1,12 @@
 from flask import Flask, render_template, request
-from db import Student, DB, simpleQuestion, Teacher
+from flask_login import LoginManager
 
 app = Flask(__name__)
+
+login_manager = LoginManager(app=app)
+
+from db import User, DB, simpleQuestion 
+
 
 @app.route('/', methods=('GET',))
 def home():
@@ -30,10 +35,7 @@ def signup():
         checkbox  = request.form.get('teacher')
 
         if password == password2:
-            if checkbox:
-                Teacher.create(username=name, email=email, password=password)
-            else:
-                Student.create(username=name, email=email, password=password)
+            User.create(username=name, email=email, password=password, teacher=checkbox)
             return render_template('signup.html', error=False)
         else:
             return render_template('signup.html', error=True)
