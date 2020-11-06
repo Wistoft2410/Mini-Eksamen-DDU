@@ -31,7 +31,7 @@ Tilføje følgende linjer til activate.bat filen der befinder sig i følgende ma
 Du bliver nok nødt til at [installere postgressql](https://www.postgresql.org/download/windows/) og tilføje den til din "path" ligesom med Python
 
 Nu skal du aktivere dit nye python miljø:
-Skriv activate.bat inden i ./env/Scripts/ og tryk enter
+Skriv `activate.bat` inden i ./env/Scripts/ og tryk enter
 
 Derefter skal du installere alle de pakker der står i requirements.txt filen i det her repository.
 **du** skal **stadig** sørge for at have python miljøet aktiveret!:
@@ -45,7 +45,7 @@ Tilføje følgende linjer til activate filen der befinder sig i følgende mappe 
 `export FLASK_APP=main.py`:
 
 Nu skal du aktivere dit nye python miljø:
-Skriv activate inden i ./env/bin/ og tryk enter
+Skriv `source activate` inden i ./env/bin/ og tryk enter
 
 Derefter skal du installere alle de pakker der står i requirements.txt filen i det her repository.
 **du** skal **stadig** sørge for at have python miljøet aktiveret!:
