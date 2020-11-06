@@ -32,6 +32,16 @@ class Student(Model):
 #    questionText = CharField()
 #    answer1 = CharField()
 #    answer2 = CharField()
+#    answer1true = BooleanField()
+
+class simpleQuestion(Model):
+    questionText = CharField()
+    answer1 = CharField()
+    answer2 = CharField()
+    yesOrNo = BooleanField()
+
+    class Meta:
+        database = DB
 
 
 class Teacher(Model):
@@ -53,6 +63,6 @@ class teacherClassRelationship(Model):
 
 if __name__ == '__main__':
     DB.connect()
-    DB.create_tables([Class, Student, Teacher, teacherClassRelationship], safe=True)
+    DB.create_tables([simpleQuestion, Class, Student, Teacher, teacherClassRelationship], safe=True)
     DB.close()
 
