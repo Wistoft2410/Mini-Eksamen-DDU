@@ -16,10 +16,9 @@ overflow: hidden;
 background-color: #BC8DA7;
 }
 .topnav a  {
-  float: left;
-  display: block;
+float: left;
 text-align: center;
-padding: 14px 16px;
+padding: 14px 20px;
 color: #EFF2EF;
 }
 
@@ -30,6 +29,9 @@ text-align: center;
 padding: 14px 16px;
 color: #EFF2EF;
 }
+.topnav a:hover {
+  background-color: #ddd;
+  }
 
 
   /*button attributes*/
