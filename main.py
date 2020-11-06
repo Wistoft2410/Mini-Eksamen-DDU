@@ -46,9 +46,7 @@ def resultatet():
 
 @app.route('/teacher_login', methods=('GET', 'POST'))
 def teacher():
-    name = request.form['name']
-    print(name)
-    return render_template('teacher_login.html', namelol=name)
+    return render_template('teacher_login.html')
 
 
 # For hver gang der bliver kørt en request bliver denne funktion kørt først
