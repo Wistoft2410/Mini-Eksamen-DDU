@@ -6,8 +6,8 @@
 
 </head>
 <body>
-    <h1>test</h1>
-    <p>Hvad er 1+1? </p>
+    <h1>Svar på testen</h1>
+    <p>{{ question.questionText }}</p>
     <form action="/resultat" method='POST'>
         <button type="submit" id ="knap">{{ question.answer1 }}</button>
     </form>
