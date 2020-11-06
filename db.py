@@ -21,8 +21,8 @@ class Class(Model):
 
 class Student(Model):
     username = CharField()
-    #email = CharField()
-    #password = CharField()
+    email = CharField()
+    password = CharField()
     #Class = ForeignKeyField(Class, backref="students")
 
     class Meta:

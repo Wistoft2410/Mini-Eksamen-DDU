@@ -2,33 +2,38 @@
 <html>
 <head>
     <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
-
-
 <title>Signup</title>
 
 </head>
 <body>
     <h1>Register</h1>
 
-    <form action="/startside" method='POST'>
+    <!-- Grunden til at denne form ikke har nogen action attribute -->
+    <!-- ER fordi at den bare skal sende request'en til singup url'et som denne form allerede er på -->
+    <form method='POST'>
         <div class ="container">
-        <label>Brugernavn:</label>
-            <input type="text" placeholder ="Brugernavn" id="name" name="name" required><br>
 
-            <br></br>
-        <label>Kodeord:</label>
-        <input type="password"placeholder ="Kodeord" id="code" name="code" required><br>
-        <label>Kodeord igen:</label>
-        <input type="password"placeholder ="Kodeord" id="code" name="code" required><br>
+        <label>Brugernavn:</label>
+        <input type="text" placeholder="Brugernavn" name="name" required><br>
         <br></br>
-        <button type="submit"  id ="knap">Register</button>
+
+        <label>Email:</label>
+        <input type="email" placeholder="Email" name="email" required><br>
+        <br></br>
+
+        <label>Kodeord:</label>
+        <input type="password" placeholder="Kodeord" name="password" required><br>
+
+        <label>Kodeord igen:</label>
+        <input type="password" placeholder="Kodeord" name="password2" required><br>
+        <br></br>
+
+        <label>Er du lærer?:</label>
+        <input type="checkbox" name="teacher" required><br>
+        <br></br>
+
+        <button type="submit" id="knap">Register</button>
         </div>
     </form>
-
-
-
-
-
 </body>
-
 </html>
