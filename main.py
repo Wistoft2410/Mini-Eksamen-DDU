@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from db import Student, DB, simpleQuestion
+from db import Student, DB, simpleQuestion, Teacher
 
 app = Flask(__name__)
 
@@ -22,6 +22,18 @@ def start():
 
 @app.route('/signup', methods=('GET', 'POST'))
 def signup():
+    if request.method == 'POST':
+        name      = request.args.get('name')
+        email     = request.args.get('email')
+        password  = request.args.get('password')
+        password2 = request.args.get('password2')
+        checkbox  = request.args.get('teacher')
+
+        if checkbox:
+            Teacher.create(username=name, email=email, password=password)
+        else:
+            Student.create(username=name, email=email, password=password)
+
     return render_template('signup.html')
 
 @app.route('/test', methods=('GET', 'POST'))
@@ -44,7 +56,7 @@ def teacher():
 def before_request():
     DB.connect()
 
-# For hver gang der bliver kørt en request bliver denne funktion kørt efter request'en
+# For hver gang der bliver kørt en request bliver denne funktion kørt efter request'en et kørt
 @app.after_request
 def after_request(response):
     DB.close()
