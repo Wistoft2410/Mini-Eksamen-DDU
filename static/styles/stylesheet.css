@@ -1,17 +1,40 @@
 body {
 
-  background: powderblue; /*baggrundsfarve*/
+  background: #BDB4BF; /*baggrundsfarve*/
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /*Font familie til baggrunden*/
   margin: 0;
   }  
 
 .header {
-background-color: #8ef9f3ff;
+background-color: #BDB4BF;
+padding: 20px;
 
 }
     
+.topnav {
+overflow: hidden;
+background-color: #BC8DA7;
+}
+.topnav a  {
+  float: left;
+  display: block;
+text-align: center;
+padding: 14px 16px;
+color: #EFF2EF;
+}
+
+.topnav p  {
+float: left; 
+display: block;
+text-align: center;
+padding: 14px 16px;
+color: #EFF2EF;
+}
+
+
   /*button attributes*/
 button {
+cursor: pointer;
 background-color: cornsilk;
 width: 10%;
 color: darkblue;
