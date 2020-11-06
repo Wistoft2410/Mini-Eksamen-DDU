@@ -2,7 +2,13 @@ body {
 
   background: powderblue; /*baggrundsfarve*/
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /*Font familie til baggrunden*/
+  margin: 0;
   }  
+
+.header {
+background-color: #8ef9f3ff;
+
+}
     
   /*button attributes*/
 button {
@@ -29,21 +35,6 @@ input[type=text], input[type=password] {
   border: 2px solid lightpink;   
   box-sizing: border-box;   
 } 
-
-
- /* #name {
-     
-      display: block;
-      margin-right: auto;
-      margin-left: auto;
-  }
-
-  #knap {
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-  }*/
-
 
   h1 {
     text-align: center;
