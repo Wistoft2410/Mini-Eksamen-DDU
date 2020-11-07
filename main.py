@@ -1,7 +1,15 @@
-from flask import Flask, render_template, request
-from db import Student, DB, simpleQuestion, Teacher
+from flask import Flask, render_template, request, redirect, url_for
+from flask_login import LoginManager, login_user
 
 app = Flask(__name__)
+
+# Man skal have en "secret_key" for at kryptere bruger browser sessionen!
+app.secret_key = '387r3q897thghds0-'
+
+login_manager = LoginManager(app=app)
+
+from db import User, DB, simpleQuestion 
+
 
 @app.route('/', methods=('GET',))
 def home():
@@ -14,6 +22,23 @@ def layout():
 
 @app.route('/student_login', methods=('GET', 'POST'))
 def student():
+    if request.method == 'POST':
+        email     = request.form.get('email')
+        password  = request.form.get('password')
+        user = User.get_or_none(User.email == email.lower())
+        if not user:
+            # Det her kører hvis brugeren ikke har angivet den rigtige email 
+            return render_template('student_login.html', error_msg="Denne email findes ikke!")
+        else:
+            if user.password == password:
+                # Det her kører hvis brugeren HAR angivet det rigtige password 
+                login_user(user)
+                return redirect(url_for('start'))
+            else:
+                # Det her kører hvis brugeren ikke har angivet det rigtige password 
+                return render_template('student_login.html', error_msg="Denne adgangskode passer ikke!")
+
+    # Det her kører hvis brugeren bare har lavet en "GET" request til denne rute
     return render_template('student_login.html')
 
 @app.route('/startside', methods=('GET', 'POST'))
@@ -30,10 +55,7 @@ def signup():
         checkbox  = request.form.get('teacher')
 
         if password == password2:
-            if checkbox:
-                Teacher.create(username=name, email=email, password=password)
-            else:
-                Student.create(username=name, email=email, password=password)
+            User.create(username=name, email=email, password=password, teacher=(True if checkbox else False))
             return render_template('signup.html', error=False)
         else:
             return render_template('signup.html', error=True)

@@ -1,3 +1,5 @@
+from flask_login import UserMixin
+from main import login_manager
 from peewee import *
 
 USER = 'nejjyigpsyjcqc'
@@ -19,21 +21,6 @@ class Class(Model):
         database = DB
 
 
-class Student(Model):
-    username = CharField()
-    email = CharField()
-    password = CharField()
-    #Class = ForeignKeyField(Class, backref="students")
-
-    class Meta:
-        database = DB
-
-#class Question(Model):
-#    questionText = CharField()
-#    answer1 = CharField()
-#    answer2 = CharField()
-#    answer1true = BooleanField()
-
 class simpleQuestion(Model):
     questionText = CharField()
     answer1 = CharField()
@@ -44,25 +31,33 @@ class simpleQuestion(Model):
         database = DB
 
 
-class Teacher(Model):
+class User(UserMixin, Model):
     username = CharField()
     email = CharField()
     password = CharField()
+    teacher = BooleanField()
 
     class Meta:
         database = DB
 
 
 class teacherClassRelationship(Model):
-    teacher = ForeignKeyField(Teacher)
+    user = ForeignKeyField(User)
     clazz = ForeignKeyField(Class)
 
     class Meta:
         database = DB
 
 
+# Det her sørger for at login manager'en kan finde brugeren på en specifik måde
+# så vi ikke altid har behov for at gøre det selv
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get_or_none(User.id == user_id)
+
+
 if __name__ == '__main__':
     DB.connect()
-    DB.create_tables([simpleQuestion, Class, Student, Teacher, teacherClassRelationship], safe=True)
+    DB.create_tables([simpleQuestion, Class, User, teacherClassRelationship], safe=True)
     DB.close()
 
