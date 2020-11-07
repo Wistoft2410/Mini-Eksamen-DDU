@@ -5,21 +5,37 @@
     <title>student</title>
 </head>
 <body>
+
+    <div class ="topnav">
+        <p><a href ="/"> AcadeMate</a></p>
+        </div>
+
+        <div class ="header">
     <h1> Hej, {{ name }} tryk start for at starte din test </h1>
+</div>
+
+<div class ="middle">
+<p> dato <span id="datetime"></span> </p>
     <p> Din test vil være i faget mat </p>
 <b> </b>
-<p> dato <span id="datetime"></span> </p>
+
 
     <form action="/test" method='POST'>
         <button type="submit" id ="knap">Start test</button>
     </form>
+</div>
+
+
+<div class ="footer">
+<a href="/"> Log ud </a>
+</div>
+
 <script>
 var dt = new Date();
 document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
-
 </script>
 
-    <a href="/"> Log ud </a>
+
 
 </body>
 </html>

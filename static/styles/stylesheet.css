@@ -1,5 +1,8 @@
-body {
+* {
+  box-sizing: border-box;
+}
 
+body {
   background: #BDB4BF; /*baggrundsfarve*/
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /*Font familie til baggrunden*/
   margin: 0;
@@ -8,12 +11,12 @@ body {
 .header {
 background-color: #BDB4BF;
 padding: 20px;
+text-align: center;
+} 
 
-}
-    
 .topnav {
 overflow: hidden;
-background-color: #BC8DA7;
+background-color: #BC8DA7; 
 }
 .topnav a  {
 float: left;
@@ -21,18 +24,50 @@ text-align: center;
 padding: 7px 20px;
 color: #EFF2EF;
 }
-
 .topnav p  {
 float: left; 
 display: block;
 text-align: center;
 padding: 7px 16px;
 color: #EFF2EF;
+margin: 0;
 }
 .topnav a:hover {
   background-color: #ddd;
   }
 
+.left{
+  float: left;
+  width: 300px;
+  border: 3px solid #73AD21;
+  padding: 10px;
+
+}
+.middle{
+  margin: auto;
+  float: center;
+  text-align: center;
+  width: 50%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+.right{
+  float: right;
+  width: 300px;
+  border: 3px solid #73AD21;
+  padding: 10px 0;
+}
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  float: center;
+  text-align: center;
+  border: 3px solid #73AD21;
+  padding: 10px 0;
+
+}
 
   /*button attributes*/
 button {
@@ -61,12 +96,4 @@ input[type=text], input[type=password], input[type=email] {
   box-sizing: border-box;   
 } 
 
-  h1 {
-    text-align: center;
-    color:red;
-  }
-  p {
- text-align: center;
 
-    color: red;
-  }
