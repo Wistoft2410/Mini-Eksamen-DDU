@@ -1,35 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
-    <title>Testside</title>
-</head>
-<body>
+    <head>
+        <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
+        <title>Testside</title>
+    </head>
+    <body>
+        <h1>Svar på testen</h1>
+        <p>{{ question.questionText }}</p>
 
+        <div class="select" style="width: 400">
+            <form action="/resultat" method='POST'>
+                <label for="answer">Svar</label>
 
+                <input type="hidden" name="id" value="{{ question.id }}"/>
 
-    <h1>Svar på testen</h1>
-    <p>{{ question.questionText }}</p>
+                <select name="answer" id="answer">
+                    <option value="1">{{ question.answer1 }}</option>
+                    <option value="2">{{ question.answer2 }}</option>
+                </select>
 
-
-    <div class = "select" style= "width: 200px">
-    <form action="/resultat" method='POST'>
-        <label for ="ans1">Svar </label>
-        <select name ="ans1" id ="ans1">
-        <option value = "1">{{ question.answer1 }}</option>
-        <option value = "2">{{ question.answer2 }}</option>
-    </select>
-
-    
-</div>
-  
-
-    <!--<form action="/resultat" method='POST'>
-        <input type="hidden" name="id" value="{{ question.id }}"/>
-        <input type="hidden" name="answer" value="{{ question.answer2 }}"/>
-        <button type="submit" id="knap">{{ question.answer2 }}</button>
-    </form>-->
-
-
-</body>
+                <button type="submit" id="knap">Submit</button>
+            </form>
+        </div>
+    </body>
 </html>
