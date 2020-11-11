@@ -6,10 +6,21 @@
 
 </head>
 <body>
+
+
+
     <h1>Svar på testen</h1>
     <p>{{ question.questionText }}</p>
+
+    <div class = "select" style= "width: 200px">
     <form action="/resultat" method='POST'>
-        <button type="submit" id ="knap">{{ question.answer1 }}</button>
+        <label for ="ans1">Svar </label>
+        <select name ="ans1" id ="ans1">
+        <option value = "1">{{ question.answer1 }}</option>
+        <option value = "2">{{ question.answer2 }}</option>
+    </select>
+</div>
+    <input type="submit" id ="knap" value="submit">
     </form>
     <form action="/resultat" method='POST'>
         <button type="submit" id ="knap">{{ question.answer2 }}</button>
