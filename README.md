@@ -5,7 +5,6 @@
 ### Navn på hjemmeside/projekt: 
 
 
-
 ### Hvordan kører man hjemmesiden lokalt?
 
 #### Først og fremmest er der noget man skal installere
@@ -57,6 +56,11 @@ Det er meget simpelt du skal bare befinde dig i rodmappen af dette repository og
 **du** skal **stadig** sørge for at have python miljøet aktiveret!:
 
 `flask run`
+
+### Hvordan forbinder man til databasen (Skal kun bruge i forbindelse med udvikling af hjemmesiden)?
+Du skal først lige installere heroku CLI
+Så skal du logge ind ved at eksekvere følgende kommando: `heroku login`
+Derefter når du er logget ind så eksekver følgende kommando: `heroku pg:psql postgresql-graceful-82804 --app school-site-project`
 
 ### Alle links:
 

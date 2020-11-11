@@ -2,8 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
-<title>Testside </title>
-
+    <title>Testside</title>
 </head>
 <body>
 
@@ -11,6 +10,7 @@
 
     <h1>Svar på testen</h1>
     <p>{{ question.questionText }}</p>
+
 
     <div class = "select" style= "width: 200px">
     <form action="/resultat" method='POST'>
@@ -20,10 +20,12 @@
         <option value = "2">{{ question.answer2 }}</option>
     </select>
 </div>
-    <input type="submit" id ="knap" value="submit">
-    </form>
+  
+
     <form action="/resultat" method='POST'>
-        <button type="submit" id ="knap">{{ question.answer2 }}</button>
+        <input type="hidden" name="id" value="{{ question.id }}"/>
+        <input type="hidden" name="answer" value="{{ question.answer2 }}"/>
+        <button type="submit" id="knap">{{ question.answer2 }}</button>
     </form>
 </body>
 </html>

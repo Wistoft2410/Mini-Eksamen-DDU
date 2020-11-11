@@ -69,8 +69,14 @@ def signup():
 def testen():
     return render_template('test.html', question=simpleQuestion.select().where(simpleQuestion.id == 1).get())
 
+
 @app.route('/resultat', methods=('GET', 'POST'))
 def resultatet():
+    answer = request.form.get('answer')
+    ID = request.form.get('id')
+    question = simpleQuestion.get_by_id(ID)
+    print(ID)
+    print(answer)
     return render_template('resultat.html')
 
 @app.route('/teacher_login', methods=('GET', 'POST'))
