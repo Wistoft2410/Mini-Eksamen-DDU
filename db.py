@@ -25,6 +25,7 @@ class simpleQuestion(Model):
     questionText = CharField()
     answer1 = CharField()
     answer2 = CharField()
+    # If this boolean field contains the value True then it means that answer1 is the true value
     yesOrNo = BooleanField()
 
     class Meta:
@@ -33,7 +34,7 @@ class simpleQuestion(Model):
 
 class User(UserMixin, Model):
     username = CharField()
-    email = CharField()
+    email = CharField(unique=True)
     password = CharField()
     teacher = BooleanField()
 
