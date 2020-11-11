@@ -20,6 +20,7 @@ def home():
 def layout():
     return render_template('layout.html')
 
+
 @app.route('/student_login', methods=('GET', 'POST'))
 def student():
     if request.method == 'POST':
@@ -45,6 +46,7 @@ def student():
 def start():
     return render_template('startside.html')
 
+
 @app.route('/signup', methods=('GET', 'POST'))
 def signup():
     if request.method == 'POST':
@@ -56,7 +58,7 @@ def signup():
 
         if password == password2:
             User.create(username=name, email=email, password=password, teacher=(True if checkbox else False))
-            return render_template('signup.html', error=False)
+            return redirect(url_for('start'))
         else:
             return render_template('signup.html', error=True)
     return render_template('signup.html', error=False)
