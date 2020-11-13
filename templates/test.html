@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
     <title>Testside</title>
@@ -17,22 +18,21 @@
     <div class = "select" style= "width: 200px">
         <p>{{ question.questionText }}</p>
     <form action="/resultat" method='POST'>
-        <label for ="ans1">Svar: </label>
-        <select name ="ans1" id ="ans1">
+        <label for ="answer">Svar: </label>
+		<input type="hidden" name="id" value="{{ question.id }}"/>
+      <select name="answer" id="answer">
         <option value = "1">{{ question.answer1 }}</option>
         <option value = "2">{{ question.answer2 }}</option>
     </select>
+	</div>
+     <button type="submit" id="knap">slut test</button>
+	 </form>
 
-    
-</div>
   
 
-    <!--<form action="/resultat" method='POST'>
-        <input type="hidden" name="id" value="{{ question.id }}"/>
-        <input type="hidden" name="answer" value="{{ question.answer2 }}"/>
-        <button type="submit" id="knap">{{ question.answer2 }}</button>
-    </form>-->
+    
 
 
 </body>
+
 </html>
