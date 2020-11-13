@@ -7,14 +7,17 @@
 <body>
 
 
-
+<div class = "container2">
+    <div class ="center">
     <h1>Svar på testen</h1>
-    <p>{{ question.questionText }}</p>
+</div>
+</div>
 
 
     <div class = "select" style= "width: 200px">
+        <p>{{ question.questionText }}</p>
     <form action="/resultat" method='POST'>
-        <label for ="ans1">Svar </label>
+        <label for ="ans1">Svar: </label>
         <select name ="ans1" id ="ans1">
         <option value = "1">{{ question.answer1 }}</option>
         <option value = "2">{{ question.answer2 }}</option>

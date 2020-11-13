@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+
 }
 
 body {
@@ -24,6 +25,31 @@ text-align: center;
 padding: 7px 20px;
 color: #EFF2EF;
 }
+/*@media screen and (max-width: 600px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .left {
+    float: none;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .middle {
+    float: none;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .right {
+    float: none;
+    width: 100%;
+  }
+}*/
+
 .topnav p  {
 float: left; 
 display: block;
@@ -48,6 +74,7 @@ margin: 0;
   float: center;
   text-align: center;
   width: 50%;
+  transform: translateY(-0%);
   border: 3px solid #73AD21;
   padding: 10px;
 }
@@ -72,6 +99,35 @@ margin: 0;
 
 }
 
+.select {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+border: 3px solid #73AD21
+}
+
+.select select{
+background-color: #3f78a7;
+color: white;
+padding: 12px;
+/*width: 250px;*/
+font-size: 20px;
+box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+-webkit-appearance: button;
+appearance: button;
+outline: none;
+}
+.select select option{
+  padding: 30px;
+}
+
+.select:hover{
+  opacity: 0.7;
+  border-color: #888;
+}
+
+
   /*button attributes*/
 button {
 cursor: pointer;
@@ -89,6 +145,19 @@ button:hover {   /*Når man hover over button*/
   padding: 25px;   
   background-color: rgb(4, 173, 230);  
 }  
+.container2 {
+  height: 200px;
+  position: relative;
+  border: 3px solid green; 
+}
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -66%);
+  transform: translate(-50%, -66%);
+}
 
 input[type=text], input[type=password], input[type=email] {   
   width: 100%;   
