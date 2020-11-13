@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
-    <title>resultat</title>
-</head>
-<body>
-    <div class ="topnav">
-        <p><a href ="/"> AcadeMate</a></p>
+    <head>
+        <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
+        <title>resultat</title>
+    </head>
+    <body>
+        <div class="topnav">
+            <p><a href="/">AcadeMate</a></p>
         </div>
 
-    <h1>Her er dine resultater</h1>
-    <p>Du har svaret "det du svarede(fra db'en)" og det er "rigtig/forkert(fradb'en)"</p>
+        <h1>Her er dine resultater</h1>
 
-    <form action="/startside" method='POST'>
-        <button type="submit" id ="knap">Tilbage</button>
+        <p>{{ question_text }}</p>
+
+        <p>Dit svar: <b>{{ answerText }}</b></p>
+
+        {% if answer %}
+            <p style="color: green;">Det var det rigtige svar!</p>
+        {% else %}
+            <p style="color: red;">Det var ikke det rigtige svar</p>
+        {% endif %}
+
         <br><br>
-    </form>
+        <form action="/startside" method='POST'>
+            <button type="submit" id="knap">Tilbage</button>
+        </form>
 
-    <div class ="footer">
-        <a href="/"> Log ud </a>
+        <div class="footer">
+            <a href="/">Log ud</a>
         </div>
-
-
-
-</body>
+    </body>
 </html>

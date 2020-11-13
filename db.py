@@ -42,10 +42,10 @@ class User(UserMixin, Model):
         database = DB
 
 
-class UserQuestionRel(Model):
+class userQuestionRel(Model):
     user = ForeignKeyField(model=User, backref="users")
     question = ForeignKeyField(model=simpleQuestion, backref="questions")
-    answer = BooleanField()
+    correctAnswer = BooleanField()
 
     class Meta:
         database = DB
@@ -68,6 +68,6 @@ def load_user(user_id):
 
 if __name__ == '__main__':
     DB.connect()
-    DB.create_tables([simpleQuestion, Class, User, teacherClassRelationship, UserQuestionRel], safe=True)
+    DB.create_tables([simpleQuestion, Class, User, teacherClassRelationship, userQuestionRel], safe=True)
     DB.close()
 

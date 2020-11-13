@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from flask_login import LoginManager, login_user, login_required
+from flask_login import LoginManager, login_user, login_required, current_user
 
 app = Flask(__name__)
 
@@ -10,7 +10,7 @@ login_manager = LoginManager(app=app)
 login_manager.session_protection = 'strong'
 
 
-from db import User, DB, simpleQuestion 
+from db import User, DB, simpleQuestion, userQuestionRel
 
 
 @app.route('/', methods=('GET',))
@@ -70,12 +70,6 @@ def teacher_login():
     return render_template('teacher_login.html')
 
 
-@app.route('/startside', methods=('GET', 'POST'))
-@login_required
-def start():
-    return render_template('startside.html')
-
-
 @app.route('/signup', methods=('GET', 'POST'))
 def signup():
     if request.method == 'POST':
@@ -85,29 +79,50 @@ def signup():
         password2 = request.form.get('password2')
         checkbox  = request.form.get('teacher')
 
+        if User.select().where(User.email == email).exists():
+            return render_template('signup.html', error=False, error2=True)
+
         if password == password2:
-            User.create(username=name, email=email, password=password, teacher=(True if checkbox else False))
+            user = User.create(username=name, email=email, password=password, teacher=(True if checkbox else False))
+            login_user(user)
             return redirect(url_for('start'))
         else:
             return render_template('signup.html', error=True)
     return render_template('signup.html', error=False)
 
 
+@app.route('/startside', methods=('GET', 'POST'))
+@login_required
+def start():
+    return render_template('startside.html')
+
+
 @app.route('/test', methods=('GET', 'POST'))
 @login_required
 def testen():
-    return render_template('test.html', question=simpleQuestion.select().where(simpleQuestion.id == 1).get())
+    return render_template('test.html', question=simpleQuestion.get_or_none(simpleQuestion.id == 1))
 
 
-@app.route('/resultat', methods=('GET', 'POST'))
+@app.route('/resultat', methods=('POST',))
 @login_required
 def resultatet():
     answer = request.form.get('answer')
     ID = request.form.get('id')
-    question = simpleQuestion.get_by_id(ID)
-    print(ID)
-    print(answer)
-    return render_template('resultat.html')
+    question = simpleQuestion.get_or_none(ID)
+
+    answeredCorrectly = False
+
+    if question:
+        if question.yesOrNo:
+            if question.answer1 == answer:
+                answeredCorrectly = True
+
+        elif question.answer2 == answer:
+            answeredCorrectly = True
+
+    userQuestionRel.create(user=current_user.id, question=ID, correctAnswer=answeredCorrectly)
+
+    return render_template('resultat.html', question_text=question.questionText, answerText=answer, answer=answeredCorrectly)
 
 
 # For hver gang der kommer en 401 error på vores hjemmeside bliver denne funktion kaldt!
@@ -127,6 +142,7 @@ def before_request():
 def after_request(response):
     DB.close()
     return response
+
 
 
 if __name__ == '__main__':

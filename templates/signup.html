@@ -16,11 +16,15 @@
             <label>Brugernavn:</label>
             <input type="text" placeholder="Brugernavn" name="name" required><br>
 
+            {% if error2 %}
+                <p>Der findes allerede en bruger med den mail!</p>
+            {% endif %}
+
             <label>Email:</label>
             <input type="email" placeholder="Email" name="email" required><br>
 
             {% if error %}
-                <p>Adgangskoderne skal være ens!</p>
+                <p>adgangskoderne skal være ens!</p>
             {% endif %}
 
             <label>Kodeord:</label>
