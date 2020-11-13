@@ -59,13 +59,6 @@ class teacherClassRelationship(Model):
         database = DB
 
 
-# Det her sørger for at login manager'en kan finde brugeren på en specifik måde
-# så vi ikke altid har behov for at gøre det selv
-@login_manager.user_loader
-def load_user(user_id):
-    return User.get_or_none(User.id == user_id)
-
-
 if __name__ == '__main__':
     DB.connect()
     DB.create_tables([simpleQuestion, Class, User, teacherClassRelationship, UserQuestionRel], safe=True)

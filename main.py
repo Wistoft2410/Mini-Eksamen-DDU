@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, login_required
 
 app = Flask(__name__)
 
@@ -7,6 +7,15 @@ app = Flask(__name__)
 app.secret_key = '387r3q897thghds0-'
 
 login_manager = LoginManager(app=app)
+login_manager.session_protection = 'strong'
+
+
+# Det her sørger for at login manager'en kan finde brugeren på en specifik måde
+# så vi ikke altid har behov for at gøre det selv
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get_or_none(User.id == user_id)
+
 
 from db import User, DB, simpleQuestion 
 
@@ -16,20 +25,19 @@ def home():
     return render_template('hovedmenu.html')
 
 
-@app.route('/layout', methods=('GET',))
-def layout():
-    return render_template('layout.html')
-
-
 @app.route('/student_login', methods=('GET', 'POST'))
-def student():
+def student_login():
     if request.method == 'POST':
         email     = request.form.get('email')
         password  = request.form.get('password')
-        user = User.get_or_none(User.email == email.lower())
+
+        # Tjek om brugeren ikke er en lærer og om der er en bruger der har den email brugeren har angivet
+        # Hvis du gerne vil vide mere om hvad tegnene betyder såsom "~" og "&" så følg følgende link:
+        # http://docs.peewee-orm.com/en/latest/peewee/query_operators.html
+        user = User.get_or_none(~(User.teacher) & (User.email == email.lower()))
         if not user:
             # Det her kører hvis brugeren ikke har angivet den rigtige email 
-            return render_template('student_login.html', error_msg="Denne email findes ikke!")
+            return render_template('student_login.html', error_msg="Denne email findes ikke i elev databasen!")
         else:
             if user.password == password:
                 # Det her kører hvis brugeren HAR angivet det rigtige password 
@@ -42,7 +50,35 @@ def student():
     # Det her kører hvis brugeren bare har lavet en "GET" request til denne rute
     return render_template('student_login.html')
 
+
+@app.route('/teacher_login', methods=('GET', 'POST'))
+def teacher_login():
+    if request.method == 'POST':
+        email     = request.form.get('email')
+        password  = request.form.get('password')
+
+        # Tjek om brugeren ikke er en lærer og om der er en bruger der har den email brugeren har angivet
+        # Hvis du gerne vil vide mere om hvad tegnene betyder såsom "~" og "&" så følg følgende link:
+        # http://docs.peewee-orm.com/en/latest/peewee/query_operators.html
+        user = User.get_or_none((User.teacher) & (User.email == email.lower()))
+        if not user:
+            # Det her kører hvis brugeren ikke har angivet den rigtige email 
+            return render_template('student_login.html', error_msg="Denne email findes ikke i elev databasen!")
+        else:
+            if user.password == password:
+                # Det her kører hvis brugeren HAR angivet det rigtige password 
+                login_user(user)
+                return redirect(url_for('start'))
+            else:
+                # Det her kører hvis brugeren ikke har angivet det rigtige password 
+                return render_template('student_login.html', error_msg="Denne adgangskode passer ikke!")
+
+    # Det her kører hvis brugeren bare har lavet en "GET" request til denne rute
+    return render_template('teacher_login.html')
+
+
 @app.route('/startside', methods=('GET', 'POST'))
+@login_required
 def start():
     return render_template('startside.html')
 
@@ -64,13 +100,14 @@ def signup():
     return render_template('signup.html', error=False)
 
 
-
 @app.route('/test', methods=('GET', 'POST'))
+@login_required
 def testen():
     return render_template('test.html', question=simpleQuestion.select().where(simpleQuestion.id == 1).get())
 
 
 @app.route('/resultat', methods=('GET', 'POST'))
+@login_required
 def resultatet():
     answer = request.form.get('answer')
     ID = request.form.get('id')
@@ -79,9 +116,12 @@ def resultatet():
     print(answer)
     return render_template('resultat.html')
 
-@app.route('/teacher_login', methods=('GET', 'POST'))
-def teacher():
-    return render_template('teacher_login.html')
+
+# For hver gang der kommer en 401 error på vores hjemmeside bliver denne funktion kaldt!
+# Lige nu forventer vi at alle 401 errors har noget at gøre med at man som bruger ikke er logget ind!
+@app.errorhandler(401)
+def unauthorized(error):
+    return render_template('errors/401.html'), 401
 
 
 # For hver gang der bliver kørt en request bliver denne funktion kørt først
