@@ -30,7 +30,7 @@ def student_login():
         user = User.get_or_none(~(User.teacher) & (User.email == email.lower()))
         if not user:
             # Det her kører hvis brugeren ikke har angivet den rigtige email 
-            return render_template('student_login.html', error_msg="Denne email findes ikke i elev databasen!")
+            return render_template('student_login.html', error_msg="Denne email findes ikke i databasen")
         else:
             if user.password == password:
                 # Det her kører hvis brugeren HAR angivet det rigtige password 
