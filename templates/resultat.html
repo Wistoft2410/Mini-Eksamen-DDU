@@ -9,8 +9,11 @@
             <p><a href="/">AcadeMate</a></p>
         </div>
 
+        <div class ="header">
         <h1>Her er dine resultater</h1>
+        </div>
 
+        <div class ="middle">
         <p>{{ question_text }}</p>
 
         <p>Dit svar: <b>{{ answerText }}</b></p>
@@ -20,6 +23,7 @@
         {% else %}
             <p style="color: red;">Det var ikke det rigtige svar</p>
         {% endif %}
+    </div>
 
         <br><br>
         <form action="/startside" method='POST'>

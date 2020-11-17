@@ -25,31 +25,6 @@ text-align: center;
 padding: 7px 20px;
 color: #EFF2EF;
 }
-/*@media screen and (max-width: 600px) {
-  .topnav a {
-    float: none;
-    width: 100%;
-  }
-}
-@media screen and (max-width: 600px) {
-  .left {
-    float: none;
-    width: 100%;
-  }
-}
-@media screen and (max-width: 600px) {
-  .middle {
-    float: none;
-    width: 100%;
-  }
-}
-@media screen and (max-width: 600px) {
-  .right {
-    float: none;
-    width: 100%;
-  }
-}*/
-
 .topnav p  {
 float: left; 
 display: block;
@@ -96,7 +71,8 @@ margin: 0;
   text-align: center;
   border: 3px solid #73AD21;
   padding: 10px 0;
-
+  background-image: url ("fot.png");
+  background-color: lightslategrey;
 }
 
 .select {
