@@ -61,7 +61,7 @@ def teacher_login():
             if user.password == password:
                 # Det her kører hvis brugeren HAR angivet det rigtige password 
                 login_user(user)
-                return redirect(url_for('teacher_resultat'))
+                return redirect(url_for('elev_resultat_liste'))
             else:
                 # Det her kører hvis brugeren ikke har angivet det rigtige password 
                 return render_template('teacher_login.html', error_msg="Denne adgangskode passer ikke!")
@@ -123,6 +123,33 @@ def resultatet():
     userQuestionRel.create(user=current_user.id, question=ID, correctAnswer=answeredCorrectly)
 
     return render_template('resultat.html', question_text=question.questionText, answerText=answer, answer=answeredCorrectly)
+
+
+@app.route('/elev_resultat_liste')
+@login_required
+def elev_resultat_liste():
+    # Find alle elever der ikke er lærere først
+    users = User.select().where(~(User.teacher))
+
+    # Find alle elevers spørgsmåls data
+    student_results = [(user.username, retrive_user_test_data(user)) for user in users]
+
+    return render_template('teacher_resultat.html', student_results=student_results)
+
+
+def retrive_user_test_data(user):
+    print(user)
+    question_data = userQuestionRel.select().join(User).where(User.id == user).execute()
+
+    retrieved_question_data = [{
+            "question": data.question.questionText, 
+            "answer1": data.question.answer1, 
+            "answer2": data.question.answer2, 
+            "correctAnswer": data.question.yesOrNo, 
+            "studentsAnswer": data.correctAnswer
+        } for data in list(question_data)]
+
+    return retrieved_question_data
 
 
 # For hver gang der kommer en 401 error på vores hjemmeside bliver denne funktion kaldt!

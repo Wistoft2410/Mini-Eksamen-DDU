@@ -51,6 +51,7 @@ class userQuestionRel(Model):
         database = DB
 
 
+# Denne database table skal først bruges i iteration 3!
 class teacherClassRelationship(Model):
     user = ForeignKeyField(User)
     clazz = ForeignKeyField(Class)
