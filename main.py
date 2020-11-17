@@ -35,7 +35,7 @@ def student_login():
             if user.password == password:
                 # Det her kører hvis brugeren HAR angivet det rigtige password 
                 login_user(user)
-                return redirect(url_for('start'))
+                return redirect(url_for('test_velkommen'))
             else:
                 # Det her kører hvis brugeren ikke har angivet det rigtige password 
                 return render_template('student_login.html', error_msg="Denne adgangskode passer ikke!")
@@ -56,15 +56,15 @@ def teacher_login():
         user = User.get_or_none((User.teacher) & (User.email == email.lower()))
         if not user:
             # Det her kører hvis brugeren ikke har angivet den rigtige email 
-            return render_template('student_login.html', error_msg="Denne email findes ikke i elev databasen!")
+            return render_template('teacher_login.html', error_msg="Denne email findes ikke i elev databasen!")
         else:
             if user.password == password:
                 # Det her kører hvis brugeren HAR angivet det rigtige password 
                 login_user(user)
-                return redirect(url_for('start'))
+                return redirect(url_for('teacher_resultat'))
             else:
                 # Det her kører hvis brugeren ikke har angivet det rigtige password 
-                return render_template('student_login.html', error_msg="Denne adgangskode passer ikke!")
+                return render_template('teacher_login.html', error_msg="Denne adgangskode passer ikke!")
 
     # Det her kører hvis brugeren bare har lavet en "GET" request til denne rute
     return render_template('teacher_login.html')
@@ -85,16 +85,16 @@ def signup():
         if password == password2:
             user = User.create(username=name, email=email, password=password, teacher=(True if checkbox else False))
             login_user(user)
-            return redirect(url_for('start'))
+            return redirect(url_for('test_velkommen'))
         else:
             return render_template('signup.html', error=True)
     return render_template('signup.html', error=False)
 
 
-@app.route('/startside', methods=('GET', 'POST'))
+@app.route('/test_velkommen', methods=('GET', 'POST'))
 @login_required
-def start():
-    return render_template('startside.html')
+def test_velkommen():
+    return render_template('test_velkommen.html')
 
 
 @app.route('/test', methods=('GET', 'POST'))

@@ -70,5 +70,7 @@ Derefter når du er logget ind så eksekver følgende kommando: `heroku pg:psql 
 
 [Kvalitativ interview](https://docs.google.com/document/d/1ZcOceFuOrCk-WHEqFYpmXqh5PTlM2hQL2-aBG_DJ60g/edit#heading=h.jan5098veqpe)
 
+[Kalender](https://calendar.google.com/calendar/u/0/r/week?mode=day&date=20201103T130553)
+
 Vi har også en kalender hvor vi skriver de problemer vi har og hvad vi har tænkt os at arbejde på næste gang
 
