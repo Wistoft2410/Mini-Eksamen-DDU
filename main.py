@@ -138,7 +138,6 @@ def elev_resultat_liste():
 
 
 def retrive_user_test_data(user):
-    print(user)
     question_data = userQuestionRel.select().join(User).where(User.id == user).execute()
 
     retrieved_question_data = [{
@@ -154,8 +153,6 @@ def retrive_user_test_data(user):
 @app.route('/opret_flere_questions')
 @login_required
 def opret_flere_questions():
-    print(request.form)
-
     return render_template('teacher_question_creation.html')
 
 
