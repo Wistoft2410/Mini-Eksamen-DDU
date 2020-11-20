@@ -61,7 +61,7 @@ def teacher_login():
             if user.password == password:
                 # Det her kører hvis brugeren HAR angivet det rigtige password 
                 login_user(user)
-                return redirect(url_for('elev_resultat_liste'))
+                return render_template('teacher_startside.html', name=user.username)
             else:
                 # Det her kører hvis brugeren ikke har angivet det rigtige password 
                 return render_template('teacher_login.html', error_msg="Denne adgangskode passer ikke!")
@@ -85,7 +85,7 @@ def signup():
         if password == password2:
             user = User.create(username=name, email=email, password=password, teacher=(True if checkbox else False))
             login_user(user)
-            return redirect(url_for('test_velkommen'))
+            return render_template('teacher_startside.html')
         else:
             return render_template('signup.html', error=True)
     return render_template('signup.html', error=False)
@@ -154,6 +154,7 @@ def retrive_user_test_data(user):
 @app.route('/opret_flere_questions')
 @login_required
 def opret_flere_questions():
+    print(request.form)
 
     return render_template('teacher_question_creation.html')
 

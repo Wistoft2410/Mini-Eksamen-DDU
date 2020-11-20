@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
-    <title>lærer</title>
-</head>
-<body>
-
-    <div class ="topnav">
-        <p><a href ="/"> AcadeMate</a></p>
+    <head>
+        <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
+        <title>lærer</title>
+    </head>
+    <body>
+        <div class ="topnav">
+            <p><a href ="/"> AcadeMate</a></p>
         </div>
 
         <div class ="header">
-    <h1> Hej, {{ name }} tryk start for at lave en test </h1>
-</div>
-
-<div class ="middle">
-<p> Dato <span id="datetime"></span> </p>
-    <p> Du vil lave en test i __ </p>
-<b> </b>
+            <h1>Hej {{ name }}</h1>
+        </div>
 
 
-    <form action="/teacher_question_creation" method='POST'>
-        <button type="submit" id ="knap">Start med at lave test</button>
-    </form>
-</div>
+        <div class ="middle">
+            <p>Dato <span id="datetime"></span></p>
+            <br>
+            <p>
+                Du har to muligheder, 
+                enden kan du se alle dine elevers resultater,
+                eller du kan oprette flere spørgsmål til dine elever!
+            </p>
+            <br>
+            <br>
 
+            <a href="/opret_flere_questions">Lav test</a>
+            <br>
+            <br>
+            <a href="/elev_resultat_liste">Se resultater fra alle klasser</a>
+        </div>
 
-<div class ="footer">
-<a href="/"> Log ud </a>
-</div>
+        <div class="footer">
+            <a href="/">Log ud</a>
+        </div>
 
-<script>
-var dt = new Date();
-document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
-</script>
-
-
-
-</body>
+        <script>
+            var dt = new Date();
+            document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+        </script>
+    </body>
 </html>
