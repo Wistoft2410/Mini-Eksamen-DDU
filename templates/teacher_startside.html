@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
+    <title>lærer</title>
+</head>
+<body>
+
+    <div class ="topnav">
+        <p><a href ="/"> AcadeMate</a></p>
+        </div>
+
+        <div class ="header">
+    <h1> Hej, {{ name }} tryk start for at lave en test </h1>
+</div>
+
+<div class ="middle">
+<p> Dato <span id="datetime"></span> </p>
+    <p> Du vil lave en test i __ </p>
+<b> </b>
+
+
+    <form action="/teacher_question_creation" method='POST'>
+        <button type="submit" id ="knap">Start med at lave test</button>
+    </form>
+</div>
+
+
+<div class ="footer">
+<a href="/"> Log ud </a>
+</div>
+
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
+
+
+
+</body>
+</html>
