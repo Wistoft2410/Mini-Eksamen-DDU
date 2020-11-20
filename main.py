@@ -61,13 +61,19 @@ def teacher_login():
             if user.password == password:
                 # Det her kører hvis brugeren HAR angivet det rigtige password 
                 login_user(user)
-                return render_template('teacher_startside.html', name=user.username)
+                return redirect(url_for('teacher_startside'))
             else:
                 # Det her kører hvis brugeren ikke har angivet det rigtige password 
                 return render_template('teacher_login.html', error_msg="Denne adgangskode passer ikke!")
 
     # Det her kører hvis brugeren bare har lavet en "GET" request til denne rute
     return render_template('teacher_login.html')
+
+
+@app.route('/teacher_startside')
+@login_required
+def teacher_startside():
+    return render_template('teacher_startside.html', name=current_user.username)
 
 
 @app.route('/signup', methods=('GET', 'POST'))
@@ -85,7 +91,10 @@ def signup():
         if password == password2:
             user = User.create(username=name, email=email, password=password, teacher=(True if checkbox else False))
             login_user(user)
-            return render_template('teacher_startside.html')
+            if user.teacher:
+                return redirect(url_for('teacher_startside'))
+            else:
+                return redirect(url_for('test_velkommen'))
         else:
             return render_template('signup.html', error=True)
     return render_template('signup.html', error=False)
