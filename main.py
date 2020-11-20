@@ -151,6 +151,12 @@ def retrive_user_test_data(user):
 
     return retrieved_question_data
 
+@app.route('/opret_flere_questions')
+@login_required
+def opret_flere_questions():
+
+    return render_template('teacher_question_creation.html')
+
 
 # For hver gang der kommer en 401 error på vores hjemmeside bliver denne funktion kaldt!
 # Lige nu forventer vi at alle 401 errors har noget at gøre med at man som bruger ikke er logget ind!
