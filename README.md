@@ -1,5 +1,4 @@
-# Mini-Eksamen-DDU
-## Digital Design
+# Mini-Eksamen-DDU ## Digital Design
 ### Gruppe: Anders, Simon og Marcus Hansen fra L 3d2 og Adam fra L 3i
 ### Deadline: 	sø 29/11 22:00
 ### Navn på hjemmeside/projekt: 
@@ -57,7 +56,7 @@ Det er meget simpelt du skal bare befinde dig i rodmappen af dette repository og
 
 `flask run`
 
-### Hvordan forbinder man til databasen (Skal kun bruge i forbindelse med udvikling af hjemmesiden)?
+### Hvordan forbinder man til databasen (Skal kun bruges i forbindelse med udvikling af hjemmesiden)?
 Du skal først lige installere heroku CLI
 Så skal du logge ind ved at eksekvere følgende kommando: `heroku login`
 Derefter når du er logget ind så eksekver følgende kommando: `heroku pg:psql postgresql-graceful-82804 --app school-site-project`
