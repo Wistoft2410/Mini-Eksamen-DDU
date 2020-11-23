@@ -1,37 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
-    <title>student_login</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block title %}Elev login{% endblock %}
 
-    <div class="topnav">
-        <p><a href ="/"> AcadeMate</a></p>
+{% block content %}
+<h1>Login som elev</h1>
+
+<form action="/student_login" method='POST'>
+    <div class="container">
+        {% if error_msg %}
+        <p>{{ error_msg }}</p>
+        {% endif %}
+
+        <label>Email:</label>
+        <input type="email" placeholder="Email" name="email" required><br>
+        <br></br>
+
+        <label>Kodeord:</label>
+        <input type="password" placeholder="Kodeord" name="password" required><br>
+        <br></br>
+
+        <button type="submit" id="knap">Login</button>
     </div>
+</form>
 
-    <h1>Login som elev</h1>
-
-    <p>login siden</p>
-
-    <form action="/student_login" method='POST'>
-        <div class="container">
-            {% if error_msg %}
-                <p>{{ error_msg }}</p>
-            {% endif %}
-
-            <label>Email:</label>
-            <input type="email" placeholder="Email" name="email" required><br>
-            <br></br>
-
-            <label>Kodeord:</label>
-            <input type="password" placeholder="Kodeord" name="password" required><br>
-            <br></br>
-
-            <button type="submit" id="knap">Login</button>
-        </div>
-    </form>
-
-    <a href="/signup"> register </a>
-</body>
-</html>
+<a href="/signup">Register</a>
+{% endblock %}

@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for
-from flask_login import LoginManager, login_user, login_required, current_user
+from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 
 app = Flask(__name__)
 
@@ -68,6 +68,14 @@ def teacher_login():
 
     # Det her kører hvis brugeren bare har lavet en "GET" request til denne rute
     return render_template('teacher_login.html')
+
+
+@app.route('/logud', methods=('GET',))
+@login_required
+def logout():
+    logout_user()
+    flash("Vi ses en anden gang!")
+    return redirect(url_for('home'))
 
 
 @app.route('/teacher_startside')

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width">
+        <link rel="canonical" href="https://academate.dk">
+        <meta name="description" content="This is a student website!">
+        <!-- TODO: Vi skal have et nyt "favicon" billede her! -->
+        <link rel="icon" type="image/png" sizes="32x32" href="../static/images/logo2.png">
+        <link rel="stylesheet" href="../static/styles/stylesheet.css">
+        <title>{% block title %}{% endblock %}</title>
+        <!-- Denne hjemmeside kan bruges i forbindelse med at lave ikoner til vores hjemmeside: -->
+        <!-- https://realfavicongenerator.net/ -->
+        <!-- Man kan sige at nu er der allerede et ikon på denne hjemmeside, men hjemmesiden der er nævnt lige ovenover kan noget mere! -->
+    </head>
+    <body>
+        <div class="header">
+            <img src="../static/images/logo2.png" alt="logo" width="500" height="166" loading="eager">
+        </div>
+
+        <div class="topnav">
+            <p><a href="/">AcadeMate</a></p>
+            <p><a href="/student_login">Elev login</a></p>
+            <p><a href="/teacher_login">Lærer login</a></p>
+            <p><a href="/signup">Ikke noget login?</a></p>
+        </div>
+        
+        <!-- Her bliver flash beskeder vist til brugeren, disse flash beskeder bliver hentet fra browser sessionen! -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="container">
+                    {% for message in messages %}
+                        <h3>{{ message }}</h3>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- block content er der hvor selve det unikke indhold af hver side skal være! -->
+        {% block content %}{% endblock %}
+
+        <!-- Hvis brugeren er logget ind så vis log ud knappen/footeren! -->
+        {% if current_user.is_authenticated %}
+            <div class="footer">
+                <a href="/logud">Log ud</a>
+            </div>
+        {% endif %}
+
+        <!-- block scripts er der hvor alt JavaScript koden kommer til at være! -->
+        {% block scripts %}{% endblock %}
+    </body>
+</html>
