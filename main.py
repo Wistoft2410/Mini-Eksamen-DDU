@@ -61,7 +61,7 @@ def teacher_login():
             if user.password == password:
                 # Det her kører hvis brugeren HAR angivet det rigtige password 
                 login_user(user)
-                return redirect(url_for('elev_resultat_liste'))
+                return redirect(url_for('teacher_startside'))
             else:
                 # Det her kører hvis brugeren ikke har angivet det rigtige password 
                 return render_template('teacher_login.html', error_msg="Denne adgangskode passer ikke!")
@@ -95,6 +95,11 @@ def signup():
 @login_required
 def test_velkommen():
     return render_template('test_velkommen.html')
+
+@app.route('/teacher_startside', methods=('GET', 'POST'))
+@login_required
+def teacher_startside():
+    return render_template('teacher_startside.html')
 
 
 @app.route('/test', methods=('GET', 'POST'))
