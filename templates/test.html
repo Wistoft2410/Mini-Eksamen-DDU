@@ -15,14 +15,11 @@
     <div class="select" style="width: 270px">
         <p>{{ question.questionText }}</p>
         <label for="answer">Svar: </label>
-        <input type="hidden" name="id" value="{{ question.id }}"/>
+        <input type="hidden" name="id" value="{{ question.id }}" required>
         <select name="answer" id="answer">
             <option value="{{ question.answer1 }}">{{ question.answer1 }}</option>
             <option value="{{ question.answer2 }}">{{ question.answer2 }}</option>
         </select>
-    </div>
-    <div class="footer">
-        <button type="submit" id="knap">slut test</button>
     </div>
 </form>
 {% endblock %}

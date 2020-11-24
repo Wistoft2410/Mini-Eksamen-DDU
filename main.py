@@ -10,7 +10,7 @@ login_manager = LoginManager(app=app)
 login_manager.session_protection = 'strong'
 
 
-from db import User, DB, simpleQuestion, userQuestionRel
+from db import User, DB, simpleQuestion, userQuestionRel, userClassRel, Class, IntegrityError
 
 
 @app.route('/', methods=('GET',))
@@ -78,7 +78,7 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/teacher_startside')
+@app.route('/teacher_startside', methods=('GET',))
 @login_required
 def teacher_startside():
     return render_template('teacher_startside.html', name=current_user.username)
@@ -142,7 +142,13 @@ def resultatet():
     return render_template('resultat.html', question_text=question.questionText, answerText=answer, answer=answeredCorrectly)
 
 
-@app.route('/elev_resultat_liste')
+@app.route('/opret_flere_questions', methods=('GET', 'POST'))
+@login_required
+def opret_flere_questions():
+    return render_template('teacher_question_creation.html')
+
+
+@app.route('/elev_resultat_liste', methods=('GET',))
 @login_required
 def elev_resultat_liste():
     # Find alle elever der ikke er lærere først
@@ -168,11 +174,44 @@ def retrive_user_test_data(user):
     return retrieved_question_data
 
 
-@app.route('/opret_flere_questions', methods=('GET', 'POST'))
+@app.route('/elev_uden_klasse_liste', methods=('GET',))
 @login_required
-def opret_flere_questions():
-    return render_template('teacher_question_creation.html')
+def elev_uden_klasse_liste():
+    users_with_classes = userClassRel.select(userClassRel.user.id)
+    users_with_no_classes = User.select().where(User.id.not_in(users_with_classes) & ~(User.teacher))
 
+    classes = Class.select()
+
+    return render_template('teacher_student_list.html', users=users_with_no_classes, classes=classes)
+
+
+@app.route('/opret_klasse', methods=('POST',))
+@login_required
+def opret_klasse():
+    class_name = request.form.get('klasse')
+
+    try:
+        Class.create(name=class_name)
+        flash(f"Klassen {class_name} blev oprettet! 😁")
+    except IntegrityError:
+        flash("Denne klasse findes allerede, prøv at finde på et nyt navn 😕")
+
+    return redirect(url_for('elev_uden_klasse_liste'))
+
+
+@app.route('/tildel_klasse', methods=('POST',))
+@login_required
+def tildel_klasse():
+    student_id = request.form.get('elev_id')
+    class_id = request.form.get('klasse_id')
+
+    student_name = User.get_by_id(student_id).username
+    class_name = Class.get_by_id(class_id).name
+
+    userClassRel.create(user=student_id, clazz=class_id)
+    flash(f"Eleven {student_name} er blevet tildelt klassen {class_name}! 😁")
+
+    return redirect(url_for('elev_uden_klasse_liste'))
 
 # For hver gang der kommer en 401 error på vores hjemmeside bliver denne funktion kaldt!
 # Lige nu forventer vi at alle 401 errors har noget at gøre med at man som bruger ikke er logget ind!

@@ -15,7 +15,7 @@ DB = PostgresqlDatabase('dae8653ftqev6r',
 
 
 class Class(Model):
-    name = CharField()
+    name = CharField(unique=True)
 
     class Meta:
         database = DB
@@ -51,10 +51,9 @@ class userQuestionRel(Model):
         database = DB
 
 
-# Denne database table skal først bruges i iteration 3!
 class userClassRel(Model):
-    user = ForeignKeyField(User)
-    clazz = ForeignKeyField(Class)
+    user = ForeignKeyField(model=User, backref="users")
+    clazz = ForeignKeyField(model=Class, backref="classes")
 
     class Meta:
         database = DB
