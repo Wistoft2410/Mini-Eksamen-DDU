@@ -4,7 +4,10 @@
 {% block content %}
 <h1>Lærer spørgsmåls form</h1>
 
-<form action="/" method='POST'>
+<!-- Grunden til at denne form ikke har nogen action attribute -->
+<!-- ER fordi at den bare skal sende request'en til det url som denne form allerede er på! -->
+<!-- Det er det browseren/html koden gør som standard når der ikke er nogen action attribute angivet i en form! -->
+<form method='POST'>
     <div class="container">
         {% if error_msg %}
         <p>{{ error_msg }}</p>

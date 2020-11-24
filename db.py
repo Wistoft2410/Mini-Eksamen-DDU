@@ -52,7 +52,7 @@ class userQuestionRel(Model):
 
 
 # Denne database table skal først bruges i iteration 3!
-class teacherClassRelationship(Model):
+class userClassRel(Model):
     user = ForeignKeyField(User)
     clazz = ForeignKeyField(Class)
 
@@ -69,6 +69,6 @@ def load_user(user_id):
 
 if __name__ == '__main__':
     DB.connect()
-    DB.create_tables([simpleQuestion, Class, User, teacherClassRelationship, userQuestionRel], safe=True)
+    DB.create_tables([simpleQuestion, Class, User, userClassRel, userQuestionRel], safe=True)
     DB.close()
 

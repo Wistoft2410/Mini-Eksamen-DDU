@@ -167,7 +167,8 @@ def retrive_user_test_data(user):
 
     return retrieved_question_data
 
-@app.route('/opret_flere_questions')
+
+@app.route('/opret_flere_questions', methods=('GET', 'POST'))
 @login_required
 def opret_flere_questions():
     return render_template('teacher_question_creation.html')
