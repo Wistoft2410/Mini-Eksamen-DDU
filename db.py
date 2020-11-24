@@ -25,7 +25,7 @@ class simpleQuestion(Model):
     questionText = CharField()
     answer1 = CharField()
     answer2 = CharField()
-    # If this boolean field contains the value True then it means that answer1 is the true value
+    # If this boolean field contains the value True then it means that answer1 is the correct answer/value
     yesOrNo = BooleanField()
 
     class Meta:
