@@ -10,13 +10,14 @@
 <form method='POST'>
     <div class="container">
         {% if error_msg %}
-        <p>{{ error_msg }}</p>
+            <p>{{ error_msg }}</p>
         {% endif %}
 
-        <label>Klasse</label>
-        <select name="klasse">
-            <option value="lol">lol</option>
-            <option value="lol1">lol1</option>
+        <labal>Klasse:</label>
+        <select name="klasse_id" required>
+            {% for class in classes %}
+                <option value="{{ class.id }}">{{ class.name }}</option>
+            {% endfor %}
         </select>
         <br><br>
 

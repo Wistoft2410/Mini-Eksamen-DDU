@@ -145,7 +145,25 @@ def resultatet():
 @app.route('/opret_flere_questions', methods=('GET', 'POST'))
 @login_required
 def opret_flere_questions():
-    return render_template('teacher_question_creation.html')
+    classes = Class.select()
+
+    if request.method == 'POST':
+        class_id = request.form.get('klasse_id')
+        question = request.form.get('spørgsmål')
+        answer1 = request.form.get('svar1')
+        answer2 = request.form.get('svar2')
+        correct_answer = request.form.get('correctAnswer')
+
+        yesOrNo = True if correct_answer == 'svar1' else False
+
+        question_id = simpleQuestion.create(questionText=question,
+                                            answer1=answer1,
+                                            answer2=answer2,
+                                            correctAnswer=correct_answer,
+                                            yesOrNo=yesOrNo)
+        flash("Spørgsmål lavet! ✔")
+
+    return render_template('teacher_question_creation.html', classes=classes)
 
 
 @app.route('/elev_resultat_liste', methods=('GET',))
@@ -209,7 +227,7 @@ def tildel_klasse():
     class_name = Class.get_by_id(class_id).name
 
     userClassRel.create(user=student_id, clazz=class_id)
-    flash(f"Eleven {student_name} er blevet tildelt klassen {class_name}! 😁")
+    flash(f"Eleven {student_name} er blevet tildelt klassen {class_name} 😁")
 
     return redirect(url_for('elev_uden_klasse_liste'))
 
