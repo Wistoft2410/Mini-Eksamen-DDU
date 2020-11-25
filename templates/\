@@ -7,10 +7,7 @@
         <link rel="canonical" href="https://academate.dk">
         <meta name="description" content="This is a student website!">
         <!-- TODO: Vi skal have et nyt "favicon" billede her! -->
-        {% if request.endpoint == "testen" %}
-            <link rel="icon" type="image/png" sizes="32x32" href="../../static/images/logo2.png">
-            <link rel="stylesheet" href="../../static/styles/stylesheet.css">
-        {% else %}
+        {% if request.endpoint == '' %}
             <link rel="icon" type="image/png" sizes="32x32" href="../static/images/logo2.png">
             <link rel="stylesheet" href="../static/styles/stylesheet.css">
         {% endif %}
@@ -21,11 +18,7 @@
     </head>
     <body>
         <div class="header">
-        {% if request.endpoint == "testen" %}
-            <img src="../../static/images/logo2.png" alt="logo" width="500" height="166" loading="eager">
-        {% else %}
             <img src="../static/images/logo2.png" alt="logo" width="500" height="166" loading="eager">
-        {% endif %}
         </div>
 
         <div class="topnav">

@@ -111,20 +111,17 @@ def signup():
 @app.route('/test_velkommen', methods=('GET', 'POST'))
 @login_required
 def test_velkommen():
-    # TODO: den her er ikke done endnu
     classes = current_user.classes
-    print(classes)
     return render_template('test_velkommen.html', classes=classes)
 
 
-@app.route('/test', methods=('GET', 'POST'))
+@app.route('/test/<classname>/', methods=('GET', 'POST'))
 @login_required
-def testen():
-    # TODO: den her er ikke done endnu
-    classes = current_user.classes
-    questions_for_each_class = [[clazz.name, [clazz.questions]] for clazz in classes]
+def testen(classname):
+    clazz = Class.get(Class.name == classname)
+    questions = simpleQuestion.select().where(simpleQuestion.clazz == clazz)
 
-    return render_template('test.html', questions=questions_for_each_class)
+    return render_template('test.html', questions=questions)
 
 
 @app.route('/resultat', methods=('POST',))
@@ -204,7 +201,7 @@ def retrive_user_test_data(user):
 @login_required
 def elev_uden_klasse_liste():
     user_ids = [rel.user.id for rel in userClassRel.select().join(User, on=(User.id == userClassRel.user.id))]
-    users_with_no_classes = User.select().where(User.id.not_in(user_ids))
+    users_with_no_classes = User.select().where(~(User.teacher) & User.id.not_in(user_ids))
 
     classes = Class.select()
 
