@@ -22,6 +22,7 @@ class Class(Model):
 
 
 class simpleQuestion(Model):
+    clazz = ForeignKeyField(model=Class, backref="questions")
     questionText = CharField()
     answer1 = CharField()
     answer2 = CharField()
@@ -43,8 +44,8 @@ class User(UserMixin, Model):
 
 
 class userQuestionRel(Model):
-    user = ForeignKeyField(model=User, backref="users")
-    question = ForeignKeyField(model=simpleQuestion, backref="questions")
+    user = ForeignKeyField(model=User, backref="questions")
+    question = ForeignKeyField(model=simpleQuestion, backref="users")
     correctAnswer = BooleanField()
 
     class Meta:
@@ -52,8 +53,8 @@ class userQuestionRel(Model):
 
 
 class userClassRel(Model):
-    user = ForeignKeyField(model=User, backref="users")
-    clazz = ForeignKeyField(model=Class, backref="classes")
+    user = ForeignKeyField(model=User, backref="classes")
+    clazz = ForeignKeyField(model=Class, backref="users")
 
     class Meta:
         database = DB
@@ -68,6 +69,6 @@ def load_user(user_id):
 
 if __name__ == '__main__':
     DB.connect()
-    DB.create_tables([simpleQuestion, Class, User, userClassRel, userQuestionRel], safe=True)
+    DB.create_tables([Class, simpleQuestion, User, userQuestionRel, userClassRel], safe=True)
     DB.close()
 

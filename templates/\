@@ -156,13 +156,14 @@ def opret_flere_questions():
 
         yesOrNo = True if correct_answer == 'svar1' else False
 
-        question_id = simpleQuestion.create(clazz=class_id,
-                                            questionText=question,
+        question_id = simpleQuestion.create(questionText=question,
                                             answer1=answer1,
                                             answer2=answer2,
                                             yesOrNo=yesOrNo)
 
-        flash("Spørgsmål er lavet! ✔")
+
+
+        flash("Spørgsmål lavet! ✔")
 
     return render_template('teacher_question_creation.html', classes=classes)
 
