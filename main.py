@@ -6,11 +6,11 @@ app = Flask(__name__)
 # Man skal have en "secret_key" for at kryptere bruger browser sessionen!
 app.secret_key = '387r3q897thghds0-'
 
-login_manager = LoginManager(app=app)
+login_manager = LoginManager(app)
 login_manager.session_protection = 'strong'
 
 
-from db import User, DB, simpleQuestion, userQuestionRel, userClassRel, Class, IntegrityError
+from db import User, DB, simpleQuestion, userQuestionRel, userClassRel, Class, IntegrityError, JOIN
 
 
 @app.route('/', methods=('GET',))
@@ -111,13 +111,20 @@ def signup():
 @app.route('/test_velkommen', methods=('GET', 'POST'))
 @login_required
 def test_velkommen():
-    return render_template('test_velkommen.html')
+    # TODO: den her er ikke done endnu
+    classes = current_user.classes
+    print(classes)
+    return render_template('test_velkommen.html', classes=classes)
 
 
 @app.route('/test', methods=('GET', 'POST'))
 @login_required
 def testen():
-    return render_template('test.html', question=simpleQuestion.get_or_none(simpleQuestion.id == 1))
+    # TODO: den her er ikke done endnu
+    classes = current_user.classes
+    questions_for_each_class = [[clazz.name, [clazz.questions]] for clazz in classes]
+
+    return render_template('test.html', questions=questions_for_each_class)
 
 
 @app.route('/resultat', methods=('POST',))
@@ -196,8 +203,8 @@ def retrive_user_test_data(user):
 @app.route('/elev_uden_klasse_liste', methods=('GET',))
 @login_required
 def elev_uden_klasse_liste():
-    users_with_classes = userClassRel.select(userClassRel.user.id)
-    users_with_no_classes = User.select().where(User.id.not_in(users_with_classes) & ~(User.teacher))
+    user_ids = [rel.user.id for rel in userClassRel.select().join(User, on=(User.id == userClassRel.user.id))]
+    users_with_no_classes = User.select().where(User.id.not_in(user_ids))
 
     classes = Class.select()
 
@@ -231,6 +238,7 @@ def tildel_klasse():
     flash(f"Eleven {student_name} er blevet tildelt klassen {class_name} 😁")
 
     return redirect(url_for('elev_uden_klasse_liste'))
+
 
 # For hver gang der kommer en 401 error på vores hjemmeside bliver denne funktion kaldt!
 # Lige nu forventer vi at alle 401 errors har noget at gøre med at man som bruger ikke er logget ind!

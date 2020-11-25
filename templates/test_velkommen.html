@@ -3,14 +3,17 @@
 
 {% block content %}
 <div class ="header">
-    <h1>Hej, {{ name }} tryk start for at starte din test</h1>
+    <h1>Hej, {{ current_user.username }} tryk start for at starte din test</h1>
 </div>
 
 <div class ="middle">
     <p>Dato <span id="datetime"></span></p>
-    <p>Din test vil være i faget mat</p>
+    <p>Her kan du se alle de klasser du er medlem af og du kan så klikke på de test der er tildelt de klasser:</p>
     <b></b>
-    <a href="/test">Start test</a>
+    {% for class in classes %}
+        <a href="/test/{{ class.name }}">Start den test der er tildelt klassen {{ class.name }}</a>
+        <br>
+    {% endfor %}
 </div>
 {% endblock %}
 
