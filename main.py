@@ -113,11 +113,6 @@ def signup():
 def test_velkommen():
     return render_template('test_velkommen.html')
 
-@app.route('/teacher_startside', methods=('GET', 'POST'))
-@login_required
-def teacher_startside():
-    return render_template('teacher_startside.html')
-
 
 @app.route('/test', methods=('GET', 'POST'))
 @login_required
