@@ -121,29 +121,27 @@ def testen(classname):
     clazz = Class.get(Class.name == classname)
     questions = simpleQuestion.select().where(simpleQuestion.clazz == clazz)
 
+    if request.method == 'POST':
+        ids = request.form.getlist('id[]')
+        answers = request.form.getlist('answer[]')
+
+        for index, ID in enumerate(ids): 
+            question = simpleQuestion.get_or_none(int(ID))
+
+            answeredCorrectly = False
+
+            if question:
+                if question.yesOrNo:
+                    if question.answer1 == answers[index]:
+                        answeredCorrectly = True
+
+                elif question.answer2 == answers[index]:
+                    answeredCorrectly = True
+
+            userQuestionRel.create(user=current_user.id, question=ID, correctAnswer=answeredCorrectly)
+
+        #return render_template('resultat.html', question_text=question.questionText, answerText=answer, answer=answeredCorrectly)
     return render_template('test.html', questions=questions)
-
-
-@app.route('/resultat', methods=('POST',))
-@login_required
-def resultatet():
-    answer = request.form.get('answer')
-    ID = request.form.get('id')
-    question = simpleQuestion.get_or_none(ID)
-
-    answeredCorrectly = False
-
-    if question:
-        if question.yesOrNo:
-            if question.answer1 == answer:
-                answeredCorrectly = True
-
-        elif question.answer2 == answer:
-            answeredCorrectly = True
-
-    userQuestionRel.create(user=current_user.id, question=ID, correctAnswer=answeredCorrectly)
-
-    return render_template('resultat.html', question_text=question.questionText, answerText=answer, answer=answeredCorrectly)
 
 
 @app.route('/opret_flere_questions', methods=('GET', 'POST'))
@@ -187,12 +185,12 @@ def retrive_user_test_data(user):
     question_data = userQuestionRel.select().join(User).where(User.id == user).execute()
 
     retrieved_question_data = [{
-            "question": data.question.questionText, 
-            "answer1": data.question.answer1, 
-            "answer2": data.question.answer2, 
-            "correctAnswer": data.question.yesOrNo, 
-            "studentsAnswer": data.correctAnswer
-        } for data in list(question_data)]
+        "question": data.question.questionText, 
+        "answer1": data.question.answer1, 
+        "answer2": data.question.answer2, 
+        "correctAnswer": data.question.yesOrNo, 
+        "studentsAnswer": data.correctAnswer
+    } for data in list(question_data)]
 
     return retrieved_question_data
 

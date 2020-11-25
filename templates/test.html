@@ -13,15 +13,16 @@
 <!-- Det er det browseren/html koden gør som standard når der ikke er nogen action attribute angivet i en form! -->
 <form method='POST'>
     {% for question in questions %}
-        <div class="select" style="width: 270px;">
+        <div style="width: 270px;">
             <p>{{ question.questionText }}</p>
             <label for="answer">Svar: </label>
-            <input type="hidden" name="id" value="{{ question.id }}" required>
-            <select name="answer" id="answer">
+            <input type="hidden" name="id[]" value="{{ question.id }}" required>
+            <select name="answer[]" id="answer">
                 <option value="{{ question.answer1 }}">{{ question.answer1 }}</option>
                 <option value="{{ question.answer2 }}">{{ question.answer2 }}</option>
             </select>
         </div>
+        <hr>
     {% endfor %}
     <button type="submit" id="knap">slut test</button>	
 </form>
