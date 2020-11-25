@@ -1,37 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
-        <title>resultat</title>
-    </head>
-    <body>
-        <div class="topnav">
-            <p><a href="/">AcadeMate</a></p>
-        </div>
+{% extends "layout.html" %}
+{% block title %}Resultat{% endblock %}
 
-        <div class ="header">
-        <h1>Her er dine resultater</h1>
-        </div>
+{% block content %}
+<div class ="middle">
+    <h1>Her er dine resultater</h1>
 
-        <div class ="middle">
-        <p>{{ question_text }}</p>
+    <p>{{ question_text }}</p>
 
-        <p>Dit svar: <b>{{ answerText }}</b></p>
+    <p>Dit svar: <b>{{ answerText }}</b></p>
 
-        {% if answer %}
-            <p style="color: green;">Det var det rigtige svar!</p>
-        {% else %}
-            <p style="color: red;">Det var ikke det rigtige svar</p>
-        {% endif %}
-    </div>
+    {% if answer %}
+    <p style="color: green;">Det var det rigtige svar!</p>
+    {% else %}
+    <p style="color: red;">Det var ikke det rigtige svar</p>
+    {% endif %}
+</div>
 
-        <br><br>
-        <form action="/startside" method='POST'>
-            <button type="submit" id="knap">Tilbage</button>
-        </form>
-
-        <div class="footer">
-            <a href="/">Log ud</a>
-        </div>
-    </body>
-</html>
+<br><br>
+<a href="/">Tilbage</a>
+{% block content %}

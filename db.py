@@ -15,7 +15,7 @@ DB = PostgresqlDatabase('dae8653ftqev6r',
 
 
 class Class(Model):
-    name = CharField()
+    name = CharField(unique=True)
 
     class Meta:
         database = DB
@@ -25,7 +25,7 @@ class simpleQuestion(Model):
     questionText = CharField()
     answer1 = CharField()
     answer2 = CharField()
-    # If this boolean field contains the value True then it means that answer1 is the true value
+    # If this boolean field contains the value True then it means that answer1 is the correct answer/value
     yesOrNo = BooleanField()
 
     class Meta:
@@ -51,10 +51,9 @@ class userQuestionRel(Model):
         database = DB
 
 
-# Denne database table skal først bruges i iteration 3!
-class teacherClassRelationship(Model):
-    user = ForeignKeyField(User)
-    clazz = ForeignKeyField(Class)
+class userClassRel(Model):
+    user = ForeignKeyField(model=User, backref="users")
+    clazz = ForeignKeyField(model=Class, backref="classes")
 
     class Meta:
         database = DB
@@ -69,6 +68,6 @@ def load_user(user_id):
 
 if __name__ == '__main__':
     DB.connect()
-    DB.create_tables([simpleQuestion, Class, User, teacherClassRelationship, userQuestionRel], safe=True)
+    DB.create_tables([simpleQuestion, Class, User, userClassRel, userQuestionRel], safe=True)
     DB.close()
 

@@ -1,39 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
-    <title>resultat</title>
-</head>
-<body>
-    <div class ="topnav">
-        <p><a href="/"> AcadeMate</a></p>
-        </div>
-    <h1>Her er elevernes resultater</h1>
-    {% for student_result in student_results %}
-        <h3>{{ student_result[0] }}</h3>
-        {% for student_question_result in student_result[1] %}
-            <p>Spørgsmål: {{ student_question_result.question }}</p>
-            <p>Svar nr. 1: {{ student_question_result.answer1 }}</p>
-            <p>Svar nr. 2: {{ student_question_result.answer2 }}</p>
-            <p>Elevens svar: {{ student_question_result.correctAnswer }}</p>
-            <p>Det korrekte svar: {{ student_question_result.studentsAnswer }}</p>
-            <br>
-        {% endfor %}
-        <br>
-        <hr>
+{% extends "layout.html" %}
+{% block title %}Elev resultater{% endblock %}
+
+{% block content %}
+<h1>Her er elevernes resultater</h1>
+{% for student_result in student_results %}
+    <h3>{{ student_result[0] }}</h3>
+    {% for student_question_result in student_result[1] %}
+        <p>Spørgsmål: {{ student_question_result.question }}</p>
+        <p>Svar nr. 1: {{ student_question_result.answer1 }}</p>
+        <p>Svar nr. 2: {{ student_question_result.answer2 }}</p>
+        <p>Elevens svar: {{ student_question_result.correctAnswer }}</p>
+        <p>Det korrekte svar: {{ student_question_result.studentsAnswer }}</p>
         <br>
     {% endfor %}
+    <br>
+    <hr>
+    <br>
+{% endfor %}
 
-    <form action="/startside" method='POST'>
-        <button type="submit" id ="knap">Tilbage</button>
-        <br><br>
-    </form>
-
-    <div class ="footer">
-        <a href="/"> Log ud </a>
-        </div>
-
-
-
-</body>
-</html>
+<a href="/startside">Tilbage</a>
+{% endblock %}

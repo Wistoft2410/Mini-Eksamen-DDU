@@ -1,50 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
-    <title>Teacher question creation</title>
-</head>
-<body>
-    <div class="topnav">
-        <p><a href="/">AcadeMate</a></p>
+{% extends "layout.html" %}
+{% block title %}Teacher question creation{% endblock %}
+
+{% block content %}
+<h1>Lærer spørgsmåls form</h1>
+
+<!-- Grunden til at denne form ikke har nogen action attribute -->
+<!-- ER fordi at den bare skal sende request'en til det url som denne form allerede er på! -->
+<!-- Det er det browseren/html koden gør som standard når der ikke er nogen action attribute angivet i en form! -->
+<form method='POST'>
+    <div class="container">
+        {% if error_msg %}
+            <p>{{ error_msg }}</p>
+        {% endif %}
+
+        <labal>Klasse:</label>
+        <select name="klasse_id" required>
+            {% for class in classes %}
+                <option value="{{ class.id }}">{{ class.name }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label>Spørgsmål</label>
+        <input type="text" placeholder="spørgsmål" name="spørgsmål" required><br>
+        <br>
+
+        <label>Svar 1</label>
+        <input type="text" placeholder="svar 1" name="svar1" required><br>
+        <br>
+
+        <label>Svar 2</label>
+        <input type="text" placeholder="svar 2" name="svar2" required><br>
+        <br>
+
+        <label>Hvad er det rigtige svar: </label>
+        <select name="correctAnswer">
+            <option value="svar1">Svar 1</option>
+            <option value="svar2">Svar 2</option>
+        </select>
+        <br><br>
+
+        <button type="submit" id="knap">Lav spørgsmål</button>
     </div>
-
-    <h1>Lærer spørgsmåls form</h1>
-
-    <form action="/" method='POST'>
-        <div class="container">
-            {% if error_msg %}
-                <p>{{ error_msg }}</p>
-            {% endif %}
-
-            <label>Klasse</label>
-            <select name="klasse">
-                <option value="lol">lol</option>
-                <option value="lol1">lol1</option>
-            </select>
-            <br><br>
-
-            <label>Spørgsmål</label>
-            <input type="text" placeholder="spørgsmål" name="spørgsmål" required><br>
-            <br>
-
-            <label>Svar 1</label>
-            <input type="text" placeholder="svar 1" name="svar1" required><br>
-            <br>
-
-            <label>Svar 2</label>
-            <input type="text" placeholder="svar 2" name="svar2" required><br>
-            <br>
-
-            <label>Hvad er det rigtige svar: </label>
-            <select name="correctAnswer">
-                <option value="svar1">Svar 1</option>
-                <option value="svar2">Svar 2</option>
-            </select>
-            <br><br>
-
-            <button type="submit" id="knap">Lav spørgsmål</button>
-        </div>
-    </form>
-</body>
-</html>
+</form>
+{% endblock %}

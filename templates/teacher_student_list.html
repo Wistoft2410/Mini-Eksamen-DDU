@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}Elev liste uden nogen klasser{% endblock %}
+
+{% block content %}
+    <h3>Følgende elever har ikke fået tildelt en klasse:</h3>
+    <h4>Kan du ikke finde den klasse du gerne vil tildele? Lav klassen her:</h4>
+    <form action="/opret_klasse" method="POST">
+        <input type="text" name="klasse" placeholder="klasse" required>
+        <button style="display: block" type="submit" id="knap">Opret klasse</button>
+    </form>
+    <br>
+    <hr>
+    {% for user in users %}
+        <p>Elevens navn: <strong>{{ user.username }}</strong></p> 
+        <p>Elevens email: <strong>{{ user.email }}</strong></p> 
+        <form action="/tildel_klasse" method="POST">
+            <input type="hidden" name="elev_id" value="{{ user.id }}" required>
+            <labal>Klasse:</label>
+            <select name="klasse_id" required>
+                {% for class in classes %}
+                    <option value="{{ class.id }}">{{ class.name }}</option>
+                {% endfor %}
+            </select>
+            <button style="display: block" type="submit" id="knap">Tildel klasse</button>
+        </form>
+        <hr>
+    {% endfor %}
+{% endblock %}
+

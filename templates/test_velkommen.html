@@ -1,41 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
-    <title>student</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block title %}Student{% endblock %}
 
-    <div class ="topnav">
-        <p><a href ="/"> AcadeMate</a></p>
-        </div>
-
-        <div class ="header">
-    <h1> Hej, {{ name }} tryk start for at starte din test </h1>
+{% block content %}
+<div class ="header">
+    <h1>Hej, {{ name }} tryk start for at starte din test</h1>
 </div>
 
 <div class ="middle">
-<p> Dato <span id="datetime"></span> </p>
-    <p> Din test vil være i faget mat </p>
-<b> </b>
-
-
-    <form action="/test" method='POST'>
-        <button type="submit" id ="knap">Start test</button>
-    </form>
+    <p>Dato <span id="datetime"></span></p>
+    <p>Din test vil være i faget mat</p>
+    <b></b>
+    <a href="/test">Start test</a>
 </div>
+{% endblock %}
 
-
-<div class ="footer">
-<a href="/"> Log ud </a>
-</div>
-
+{% block scripts %}
 <script>
-var dt = new Date();
-document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+    const date = new Date();
+    document.getElementById("datetime").innerHTML = date.toLocaleDateString();
 </script>
-
-
-
-</body>
-</html>
+{% endblock %}

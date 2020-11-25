@@ -1,29 +1,26 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
-        <title>Testside</title>
-    </head>
-    <body>
-        <div class = "container2">
-            <div class ="center">
-                <h1>Svar på testen</h1>
-            </div>
-        </div>
+{% extends "layout.html" %}
+{% block title %}Testside{% endblock %}
 
-        <form action="/resultat" method='POST'>
-            <div class = "select" style= "width: 270px">
-                <p>{{ question.questionText }}</p>
-                <label for ="answer">Svar: </label>
-                <input type="hidden" name="id" value="{{ question.id }}"/>
-                <select name="answer" id="answer">
-                    <option value="{{ question.answer1 }}">{{ question.answer1 }}</option>
-                    <option value="{{ question.answer2 }}">{{ question.answer2 }}</option>
-                </select>
-                
-            </div>
-            <div class ="footer"><button type="submit" id="knap">slut test</button>
-            </div>
-        </form>
-    </body>
-</html>
+{% block content %}
+<div class="container2">
+    <div class="center">
+        <h1>Svar på testen</h1>
+    </div>
+</div>
+
+<!-- Grunden til at denne form ikke har nogen action attribute -->
+<!-- ER fordi at den bare skal sende request'en til det url som denne form allerede er på! -->
+<!-- Det er det browseren/html koden gør som standard når der ikke er nogen action attribute angivet i en form! -->
+<form method='POST'>
+    <div class="select" style="width: 270px;">
+        <p>{{ question.questionText }}</p>
+        <label for="answer">Svar: </label>
+        <input type="hidden" name="id" value="{{ question.id }}" required>
+        <select name="answer" id="answer">
+            <option value="{{ question.answer1 }}">{{ question.answer1 }}</option>
+            <option value="{{ question.answer2 }}">{{ question.answer2 }}</option>
+        </select>
+    </div>
+    <button type="submit" id="knap">slut test</button>	
+</form>
+{% endblock %}
