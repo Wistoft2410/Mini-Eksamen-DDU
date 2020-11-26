@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 
@@ -9,8 +10,10 @@ app.secret_key = '387r3q897thghds0-'
 login_manager = LoginManager(app)
 login_manager.session_protection = 'strong'
 
+bcrypt = Bcrypt(app)
 
-from db import User, DB, simpleQuestion, userQuestionRel, userClassRel, Class, IntegrityError, JOIN
+
+from db import User, DB, simpleQuestion, userQuestionRel, userClassRel, Class, IntegrityError
 
 
 @app.route('/', methods=('GET',))
@@ -32,7 +35,7 @@ def student_login():
             # Det her kører hvis brugeren ikke har angivet den rigtige email 
             return render_template('student_login.html', error_msg="Denne email findes ikke i elev databasen!")
         else:
-            if user.password == password:
+            if bcrypt.check_password_hash(user.password, password):
                 # Det her kører hvis brugeren HAR angivet det rigtige password 
                 login_user(user)
                 return redirect(url_for('test_velkommen'))
@@ -46,6 +49,12 @@ def student_login():
 
 @app.route('/teacher_login', methods=('GET', 'POST'))
 def teacher_login():
+    users = User.select()
+
+    for user in users:
+        print(user.email)
+        print(user.password)
+
     if request.method == 'POST':
         email     = request.form.get('email')
         password  = request.form.get('password')
@@ -58,7 +67,7 @@ def teacher_login():
             # Det her kører hvis brugeren ikke har angivet den rigtige email 
             return render_template('teacher_login.html', error_msg="Denne email findes ikke i lærer databasen!")
         else:
-            if user.password == password:
+            if bcrypt.check_password_hash(user.password, password):
                 # Det her kører hvis brugeren HAR angivet det rigtige password 
                 login_user(user)
                 return redirect(url_for('teacher_startside'))
@@ -97,7 +106,11 @@ def signup():
             return render_template('signup.html', error=False, error2=True)
 
         if password == password2:
-            user = User.create(username=name, email=email, password=password, teacher=(True if checkbox else False))
+            user = User.create(username=name,
+                               email=email.lower(),
+                               # Hash brugerens adgangskode
+                               password=bcrypt.generate_password_hash(password).decode("utf-8"),
+                               teacher=(True if checkbox else False))
             login_user(user)
             if user.teacher:
                 return redirect(url_for('teacher_startside'))
