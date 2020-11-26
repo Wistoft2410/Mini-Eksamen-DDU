@@ -5,17 +5,20 @@
 <div class ="middle">
     <h1>Her er dine resultater</h1>
 
-    <p>{{ question_text }}</p>
+    {% for question_data in questions %}
+        <p>{{ question_data["question"].questionText }}</p>
 
-    <p>Dit svar: <b>{{ answerText }}</b></p>
+        <p>Dit svar: <b>{{ question_data["answer"] }}</b></p>
 
-    {% if answer %}
-    <p style="color: green;">Det var det rigtige svar!</p>
-    {% else %}
-    <p style="color: red;">Det var ikke det rigtige svar</p>
-    {% endif %}
+        {% if question_data["correct"] %}
+            <p style="color: green;">Det var det rigtige svar!</p>
+        {% else %}
+            <p style="color: red;">Det var ikke det rigtige svar</p>
+        {% endif %}
+
+        <hr>
+    {% endfor %}
 </div>
-
-<br><br>
+<br>
 <a href="/">Tilbage</a>
-{% block content %}
+{% endblock %}

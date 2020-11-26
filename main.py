@@ -119,9 +119,14 @@ def test_velkommen():
 @login_required
 def testen(classname):
     clazz = Class.get(Class.name == classname)
-    questions = simpleQuestion.select().where(simpleQuestion.clazz == clazz)
+
+    # Sørg for ikke at finde spørgsmål som eleven allerede har svaret på!
+    answered_questions = [data.question for data in userQuestionRel.select().where(userQuestionRel.user == current_user.id)]
+    questions = simpleQuestion.select().where((simpleQuestion.clazz == clazz) & (simpleQuestion.id.not_in(answered_questions)))
 
     if request.method == 'POST':
+        question_datas = []
+
         ids = request.form.getlist('id[]')
         answers = request.form.getlist('answer[]')
 
@@ -139,9 +144,10 @@ def testen(classname):
                     answeredCorrectly = True
 
             userQuestionRel.create(user=current_user.id, question=ID, correctAnswer=answeredCorrectly)
+            question_datas.append({"question": question, "correct": answeredCorrectly, "answer": answers[index]})
 
-        #return render_template('resultat.html', question_text=question.questionText, answerText=answer, answer=answeredCorrectly)
-    return render_template('test.html', questions=questions)
+        return render_template('resultat.html', questions=question_datas)
+    return render_template('test.html', questions=questions, classname=classname)
 
 
 @app.route('/opret_flere_questions', methods=('GET', 'POST'))
