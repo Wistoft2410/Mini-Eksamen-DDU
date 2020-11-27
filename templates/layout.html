@@ -7,15 +7,28 @@
         <link rel="canonical" href="https://academate.dk">
         <meta name="description" content="This is a student website!">
         <!-- TODO: Vi skal have et nyt "favicon" billede her! -->
-        <link rel="icon" type="image/png" sizes="32x32" href="../static/images/logo2.png">
-        <link rel="stylesheet" href="../static/styles/stylesheet.css">
+        {% if request.endpoint == "testen" %}
+            <link rel="icon" type="image/png" sizes="32x32" href="../../static/images/logo2.png">
+            <link rel="stylesheet" href="../../static/styles/stylesheet.css">
+        {% else %}
+            <link rel="icon" type="image/png" sizes="32x32" href="../static/images/logo2.png">
+            <link rel="stylesheet" href="../static/styles/stylesheet.css">
+        {% endif %}
         <title>{% block title %}{% endblock %}</title>
         <!-- Denne hjemmeside kan bruges i forbindelse med at lave ikoner til vores hjemmeside: -->
         <!-- https://realfavicongenerator.net/ -->
         <!-- Man kan sige at nu er der allerede et ikon på denne hjemmeside, men hjemmesiden der er nævnt lige ovenover kan noget mere! -->
     </head>
     <body>
-    
+	
+        <div class="header">
+        {% if request.endpoint == "testen" %}
+            <img src="../../static/images/logo2.png" alt="logo" width="500" height="166" loading="eager">
+        {% else %}
+            <img src="../static/images/logo2.png" alt="logo" width="500" height="166" loading="eager">
+        {% endif %}
+        </div>
+
         <div class="topnav">
             <p><a href="/">AcadeMate</a></p>
             <p><a href="/student_login">Elev login</a></p>

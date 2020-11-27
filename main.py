@@ -1,13 +1,16 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 
 # Man skal have en "secret_key" for at kryptere bruger browser sessionen!
 app.secret_key = '387r3q897thghds0-'
 
-login_manager = LoginManager(app=app)
+login_manager = LoginManager(app)
 login_manager.session_protection = 'strong'
+
+bcrypt = Bcrypt(app)
 
 
 from db import User, DB, simpleQuestion, userQuestionRel, userClassRel, Class, IntegrityError
@@ -32,7 +35,7 @@ def student_login():
             # Det her kører hvis brugeren ikke har angivet den rigtige email 
             return render_template('student_login.html', error_msg="Denne email findes ikke i elev databasen!")
         else:
-            if user.password == password:
+            if bcrypt.check_password_hash(user.password, password):
                 # Det her kører hvis brugeren HAR angivet det rigtige password 
                 login_user(user)
                 return redirect(url_for('test_velkommen'))
@@ -46,6 +49,12 @@ def student_login():
 
 @app.route('/teacher_login', methods=('GET', 'POST'))
 def teacher_login():
+    users = User.select()
+
+    for user in users:
+        print(user.email)
+        print(user.password)
+
     if request.method == 'POST':
         email     = request.form.get('email')
         password  = request.form.get('password')
@@ -58,7 +67,7 @@ def teacher_login():
             # Det her kører hvis brugeren ikke har angivet den rigtige email 
             return render_template('teacher_login.html', error_msg="Denne email findes ikke i lærer databasen!")
         else:
-            if user.password == password:
+            if bcrypt.check_password_hash(user.password, password):
                 # Det her kører hvis brugeren HAR angivet det rigtige password 
                 login_user(user)
                 return redirect(url_for('teacher_startside'))
@@ -97,7 +106,11 @@ def signup():
             return render_template('signup.html', error=False, error2=True)
 
         if password == password2:
-            user = User.create(username=name, email=email, password=password, teacher=(True if checkbox else False))
+            user = User.create(username=name,
+                               email=email.lower(),
+                               # Hash brugerens adgangskode
+                               password=bcrypt.generate_password_hash(password).decode("utf-8"),
+                               teacher=(True if checkbox else False))
             login_user(user)
             if user.teacher:
                 return redirect(url_for('teacher_startside'))
@@ -111,35 +124,43 @@ def signup():
 @app.route('/test_velkommen', methods=('GET', 'POST'))
 @login_required
 def test_velkommen():
-    return render_template('test_velkommen.html')
+    classes = current_user.classes
+    return render_template('test_velkommen.html', classes=classes)
 
 
-@app.route('/test', methods=('GET', 'POST'))
+@app.route('/test/<classname>/', methods=('GET', 'POST'))
 @login_required
-def testen():
-    return render_template('test.html', question=simpleQuestion.get_or_none(simpleQuestion.id == 1))
+def testen(classname):
+    clazz = Class.get(Class.name == classname)
 
+    # Sørg for ikke at finde spørgsmål som eleven allerede har svaret på!
+    answered_questions = [data.question for data in userQuestionRel.select().where(userQuestionRel.user == current_user.id)]
+    questions = simpleQuestion.select().where((simpleQuestion.clazz == clazz) & (simpleQuestion.id.not_in(answered_questions)))
 
-@app.route('/resultat', methods=('POST',))
-@login_required
-def resultatet():
-    answer = request.form.get('answer')
-    ID = request.form.get('id')
-    question = simpleQuestion.get_or_none(ID)
+    if request.method == 'POST':
+        question_datas = []
 
-    answeredCorrectly = False
+        ids = request.form.getlist('id[]')
+        answers = request.form.getlist('answer[]')
 
-    if question:
-        if question.yesOrNo:
-            if question.answer1 == answer:
-                answeredCorrectly = True
+        for index, ID in enumerate(ids): 
+            question = simpleQuestion.get_or_none(int(ID))
 
-        elif question.answer2 == answer:
-            answeredCorrectly = True
+            answeredCorrectly = False
 
-    userQuestionRel.create(user=current_user.id, question=ID, correctAnswer=answeredCorrectly)
+            if question:
+                if question.yesOrNo:
+                    if question.answer1 == answers[index]:
+                        answeredCorrectly = True
 
-    return render_template('resultat.html', question_text=question.questionText, answerText=answer, answer=answeredCorrectly)
+                elif question.answer2 == answers[index]:
+                    answeredCorrectly = True
+
+            userQuestionRel.create(user=current_user.id, question=ID, correctAnswer=answeredCorrectly)
+            question_datas.append({"question": question, "correct": answeredCorrectly, "answer": answers[index]})
+
+        return render_template('resultat.html', questions=question_datas)
+    return render_template('test.html', questions=questions, classname=classname)
 
 
 @app.route('/opret_flere_questions', methods=('GET', 'POST'))
@@ -156,12 +177,13 @@ def opret_flere_questions():
 
         yesOrNo = True if correct_answer == 'svar1' else False
 
-        question_id = simpleQuestion.create(questionText=question,
+        question_id = simpleQuestion.create(clazz=class_id,
+                                            questionText=question,
                                             answer1=answer1,
                                             answer2=answer2,
-                                            correctAnswer=correct_answer,
                                             yesOrNo=yesOrNo)
-        flash("Spørgsmål lavet! ✔")
+
+        flash("Spørgsmål er lavet! ✔")
 
     return render_template('teacher_question_creation.html', classes=classes)
 
@@ -182,12 +204,12 @@ def retrive_user_test_data(user):
     question_data = userQuestionRel.select().join(User).where(User.id == user).execute()
 
     retrieved_question_data = [{
-            "question": data.question.questionText, 
-            "answer1": data.question.answer1, 
-            "answer2": data.question.answer2, 
-            "correctAnswer": data.question.yesOrNo, 
-            "studentsAnswer": data.correctAnswer
-        } for data in list(question_data)]
+        "question": data.question.questionText, 
+        "answer1": data.question.answer1, 
+        "answer2": data.question.answer2, 
+        "correctAnswer": data.question.yesOrNo, 
+        "studentsAnswer": data.correctAnswer
+    } for data in list(question_data)]
 
     return retrieved_question_data
 
@@ -195,8 +217,8 @@ def retrive_user_test_data(user):
 @app.route('/elev_uden_klasse_liste', methods=('GET',))
 @login_required
 def elev_uden_klasse_liste():
-    users_with_classes = userClassRel.select(userClassRel.user.id)
-    users_with_no_classes = User.select().where(User.id.not_in(users_with_classes) & ~(User.teacher))
+    user_ids = [rel.user.id for rel in userClassRel.select().join(User, on=(User.id == userClassRel.user.id))]
+    users_with_no_classes = User.select().where(~(User.teacher) & User.id.not_in(user_ids))
 
     classes = Class.select()
 
@@ -230,6 +252,7 @@ def tildel_klasse():
     flash(f"Eleven {student_name} er blevet tildelt klassen {class_name} 😁")
 
     return redirect(url_for('elev_uden_klasse_liste'))
+
 
 # For hver gang der kommer en 401 error på vores hjemmeside bliver denne funktion kaldt!
 # Lige nu forventer vi at alle 401 errors har noget at gøre med at man som bruger ikke er logget ind!
