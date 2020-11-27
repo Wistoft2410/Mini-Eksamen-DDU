@@ -2,6 +2,11 @@
 {% block title %}Hovedmenu{% endblock %}
 
 {% block content %}
+
+<div class ="welcome">
+<h1>Welcome to AcadeMate </h1>
+</div>
+
     {% if current_user.is_authenticated %}
         <div class="middle">
             {% if current_user.teacher %}
