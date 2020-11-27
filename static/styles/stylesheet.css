@@ -13,9 +13,18 @@ body {
   }  
 
 .header {
-background-color: #BDB4BF;
-padding: 20px;
-text-align: center;
+  left: 505px;
+  top: 144px;
+  position: absolute;
+  overflow: visible;
+  width: 357px;
+  height: 122px;
+  text-align: left;
+  font-family: Times New Roman;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100px;
+  color: rgba(255,255,255,1);
 } 
 
 .topnav {

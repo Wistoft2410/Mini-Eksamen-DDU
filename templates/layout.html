@@ -20,6 +20,12 @@
         <!-- Man kan sige at nu er der allerede et ikon på denne hjemmeside, men hjemmesiden der er nævnt lige ovenover kan noget mere! -->
     </head>
     <body>
+        <div class="topnav">
+            <p><a href="/">AcadeMate</a></p>
+            <p><a href="/student_login">Elev login</a></p>
+            <p><a href="/teacher_login">Lærer login</a></p>
+            <p><a href="/signup">Ikke noget login?</a></p>
+        </div>
 	
         <div class="header">
         {% if request.endpoint == "testen" %}
@@ -29,15 +35,9 @@
         {% endif %}
         </div>
 
-        <div class="topnav">
-            <p><a href="/">AcadeMate</a></p>
-            <p><a href="/student_login">Elev login</a></p>
-            <p><a href="/teacher_login">Lærer login</a></p>
-            <p><a href="/signup">Ikke noget login?</a></p>
-        </div>
-        <div class="header">
+        <!--<div class="header">
             <img src="../static/images/logo2.png" alt="logo" width="500" height="166" loading="eager">
-        </div>
+        </div> -->
         
         <!-- Her bliver flash beskeder vist til brugeren, disse flash beskeder bliver hentet fra browser sessionen! -->
         {% with messages = get_flashed_messages() %}
