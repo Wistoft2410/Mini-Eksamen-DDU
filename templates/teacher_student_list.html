@@ -23,6 +23,12 @@
             </select>
             <button style="display: block" type="submit" id="knap">Tildel klasse</button>
         </form>
+        <br>
+        <p>Kan du ikke genkende denne bruger, tror du det er en bot/scammer osv?</p>
+        <form action="/delete_user" method="POST">
+            <input type="hidden" name="elev_id" value="{{ user.id }}" required>
+            <button style="display: block" type="submit" id="knap">Slet bruger</button>
+        </form>
         <hr>
     {% endfor %}
 {% endblock %}
