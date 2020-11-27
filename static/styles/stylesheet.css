@@ -17,12 +17,14 @@ body {
   }  
 
 .welcome {
-position: relative;
-width: 75%;
+float: right;
+font-family: 'Times New Roman', Times, serif;
+font-size: 40px;
+width: 40%;
 height: 40%;
 color: white;
-text-align: right;
-border: 3px solid #73AD21;
+text-align: center;
+
 } 
 
 .header {
@@ -34,13 +36,11 @@ text-align: center;
 #ab {
 float: left;
 position: absolute;
-  top: 0;
-  bottom: 0;
-  width: auto; /* to keep proportions */
-  height: auto; /* to keep proportions */
-  margin: auto auto 0; 
-
-/*min-height: calc(100% - 200px);*/
+top: 0;
+bottom: 0;
+width: auto; /* to keep proportions */
+height: auto; /* to keep proportions */
+margin: auto auto 0; 
 
 }
 
@@ -73,17 +73,24 @@ padding-top: 0px;
 padding-bottom: 0px;
 color: #EFF2EF;
 margin: 0;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .topnav a:hover {
   background-color: #ddd;
   }
 
-.left{
-  float: left;
-  width: 300px;
-  border: 3px solid #73AD21;
+.info{
+  /*position: absolute;
+  top: 50%;*/
+  background-color: rgb(255, 255, 255);
+  float: right;
+  text-align: left;
+  width: 400px;
+  height: 300px;
+  border-radius: 20px;
   padding: 10px;
-
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .middle{
   margin: auto;
@@ -153,8 +160,16 @@ width: 10%;
 color: darkblue;
 padding: 15px;   
 margin: 10px 0px;
-border: none
+border: none 
+border-radius: 20px;
 }
+.button{
+  float: right
+  
+  width: auto; /* to keep proportions */
+height: auto; /* to keep proportions */
+}
+
 button:hover {   /*Når man hover over button*/
   opacity: 0.7;   
 }
