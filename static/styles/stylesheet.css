@@ -1,3 +1,7 @@
+body {
+  height: 100vh;
+}
+
 * {
   margin: 0;
 		padding: 0;
@@ -7,15 +11,15 @@
 }
 
 body {
-  background: #BDB4BF; /*baggrundsfarve*/
+  background: #7F89c4; /*baggrundsfarve*/
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /*Font familie til baggrunden*/
   margin: 0;
   }  
 
 .welcome {
-  position: relative;
-  width: 75%;
-  height: 40%;
+position: relative;
+width: 75%;
+height: 40%;
 color: white;
 text-align: right;
 border: 3px solid #73AD21;
@@ -27,27 +31,46 @@ padding: 20px;
 text-align: center;
 } 
 
-.topnav {
-overflow: hidden;
-background-color: #06063A;
+#ab {
+float: left;
+position: absolute;
+  top: 0;
+  bottom: 0;
+  width: auto; /* to keep proportions */
+  height: auto; /* to keep proportions */
+  margin: auto auto 0; 
+
+/*min-height: calc(100% - 200px);*/
 
 }
+
+.topnav {
+overflow: hidden;
+background-color: #080957;
+}
+
+.topnav img {
+float: left;
+}
+
 .topnav a  {
 float: right;
 text-decoration: none;
 font-family: 'Times New Roman', Times, serif;
 font-size: 25px;
-border-left: solid;
-border-right-style: solid;
+border: 1px;
+border-left-style: solid;
 text-align: center;
-padding: 7px 20px;
+padding: 25px 20px;
 color: #EFF2EF;
 }
 .topnav p  {
 float: right; 
 display: block;
 text-align: center;
-padding: 20px 20px;
+padding: 20px 0px;
+padding-top: 0px;
+padding-bottom: 0px;
 color: #EFF2EF;
 margin: 0;
 }
