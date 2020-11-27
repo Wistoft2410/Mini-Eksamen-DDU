@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Slet spørgsmål{% endblock %}
+
+{% block content %}
+    <h3>Slet spørgsmål:</h3>
+
+    {% for class in classes %}
+        <h3>Klasse: {{ class.name }}</h3>
+
+        {% if class.questions|length %}
+            {% for question in class.questions %}
+                <p>{{ question.questionText }}</p>
+
+                <form action="/delete_questions" method="POST">
+                    <input type="hidden" name="question_id" value="{{ question.id }}">
+                    <button type="submit" id="knap">Slet spørgsmål</button>
+                </form>
+            {% endfor %}
+        {% else %}
+            <p>Der er ikke flere spørgsmål i denne klasse</p>
+        {% endif %}
+        <br>
+    {% endfor %}
+{% endblock %}

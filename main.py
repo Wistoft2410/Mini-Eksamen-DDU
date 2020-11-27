@@ -239,6 +239,23 @@ def delete_user():
 
     return redirect(url_for('elev_uden_klasse_liste'))
 
+
+@app.route('/delete_questions', methods=('GET', 'POST'))
+@login_required
+def delete_question():
+    if request.method == 'POST':
+        question_id = request.form.get('question_id')
+        question = simpleQuestion.get_or_none(simpleQuestion.id == question_id)
+
+        if question:
+            question.delete_instance()
+            flash("Spørgsmålet er blevet slettet!")
+        else:
+            flash("Der skete en fejl, vi kunne ikke finde det spørgsmål")
+
+    return render_template('delete_questions.html', classes=Class.select())
+
+
 @app.route('/opret_klasse', methods=('POST',))
 @login_required
 def opret_klasse():
