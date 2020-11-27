@@ -225,6 +225,20 @@ def elev_uden_klasse_liste():
     return render_template('teacher_student_list.html', users=users_with_no_classes, classes=classes)
 
 
+@app.route('/delete_user', methods=('POST',))
+@login_required
+def delete_user():
+    user_id = request.form.get('elev_id')
+    user = User.get_or_none(User.id == user_id)
+
+    if user:
+        user.delete_instance()
+        flash("Eleven er blevet slettet!")
+    else:
+        flash("Der skete en fejl, vi kunne ikke finde den elev")
+
+    return redirect(url_for('elev_uden_klasse_liste'))
+
 @app.route('/opret_klasse', methods=('POST',))
 @login_required
 def opret_klasse():

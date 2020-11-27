@@ -9,7 +9,6 @@
         <button style="display: block" type="submit" id="knap">Opret klasse</button>
     </form>
     <br>
-    <hr>
     {% for user in users %}
         <p>Elevens navn: <strong>{{ user.username }}</strong></p> 
         <p>Elevens email: <strong>{{ user.email }}</strong></p> 
@@ -29,7 +28,5 @@
             <input type="hidden" name="elev_id" value="{{ user.id }}" required>
             <button style="display: block" type="submit" id="knap">Slet bruger</button>
         </form>
-        <hr>
     {% endfor %}
 {% endblock %}
-
