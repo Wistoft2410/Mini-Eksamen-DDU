@@ -27,7 +27,7 @@
             <p><a href="/student_login">Elev</a></p>
             <img src="../../static/images/AcadeMate.png" alt="am">
         </div>
-        {% if not request.endpoint == "home" %}
+        {% if not request.endpoint == "home" and student_login %}
         <div class="header">
         {% if request.endpoint == "testen" %}
             <img src="../../static/images/logo2.png" alt="logo" width="500" height="166" loading="eager">
@@ -37,9 +37,6 @@
         </div>
         {% endif %}
 
-        <!--<div class="header">
-            <img src="../static/images/logo2.png" alt="logo" width="500" height="166" loading="eager">
-        </div> -->
         
         <!-- Her bliver flash beskeder vist til brugeren, disse flash beskeder bliver hentet fra browser sessionen! -->
         {% with messages = get_flashed_messages() %}

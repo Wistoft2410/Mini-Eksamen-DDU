@@ -6,6 +6,7 @@
 <div class ="welcome">
 <h1>Welcome to AcadeMate </h1>
 </div>
+
     {% if current_user.is_authenticated %}
         <div class="middle">
             {% if current_user.teacher %}
@@ -25,10 +26,12 @@
             qui officia deserunt mollit anim id est laborum.</p>
             </div>
 
-            <div class="button">
-            <button type="button">Registre</button>
-        </div>
-   
+<div class="button1">
+    <form action = "/signup">        
+    <button type="submit">Registre </button>    
+    </form>
+</div>
+
         <img id = "ab" src="../../static/images/ab.png" alt="ab">>
   
 
