@@ -6,8 +6,10 @@
     <h1>Hej, {{ current_user.username }} tryk start for at starte din test</h1>
 </div>
 
-<div class ="middle">
-    <p>Dato <span id="datetime"></span></p>
+<p><span id="datetime"></span></p>
+
+<div class ="container2">
+    
     {% if classes|length %}
         <p>Her kan du se alle de klasser du er medlem af og du kan så klikke på de test der er tildelt de klasser:</p>
         <b></b>

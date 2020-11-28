@@ -98,13 +98,25 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.middle a {
+  font-size: 20px;
+  text-decoration: none;
+  font-family: 'Times New Roman', Times, serif;
+
+}
+
+.middle a:hover{
+  color: black;
+  background-color: #ddd;
+}
+
 .middle{
   margin: auto;
   float: center;
   text-align: center;
-  width: 50%;
-  transform: translateY(-0%);
-  border: 3px solid #73AD21;
+  width: 5%;
+  border: 3px solid #ffffff;
   padding: 10px;
 }
 
@@ -200,10 +212,33 @@ button:hover {   /*Når man hover over button*/
   border-radius: 20px;
   margin: auto;
 }  
+#datetime {
+  position: absolute;
+  width: auto;
+  height: 7%;
+  left: 0%;
+  top: 20.5%;
+  background-color: rgb(47, 5, 102);
+  color: rgb(236, 236, 245);
+  padding: 15px;   
+  margin: 10px 0px; 
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+
+}
+
 .container2 {
-  height: 200px;
+  float: center;
   position: relative;
-  border: 3px solid green; 
+  top: 10%;
+  left: 34%;
+  background-color: rgb(255, 255, 255);
+  text-align: left;
+  width: 400px;
+  height: 300px;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .center {
   margin: 0;
