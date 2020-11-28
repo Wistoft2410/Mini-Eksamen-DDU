@@ -81,10 +81,11 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
 .info{
-  /*position: absolute;
-  top: 50%;*/
-  background-color: rgb(255, 255, 255);
   float: right;
+  position: relative;
+  top: 28%;
+  left: 34%;
+  background-color: rgb(255, 255, 255);
   text-align: left;
   width: 400px;
   height: 300px;
@@ -101,15 +102,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border: 3px solid #73AD21;
   padding: 10px;
 }
-.right{
-  overflow: hidden;
-  float: right;
-  width: 300px;
-  transform: translateY(-66%);
-  height: 300px;
-  border: 3px solid #73AD21;
-  padding: 10px;
-}
+
 
 .footer{
   position: fixed;
@@ -148,26 +141,24 @@ outline: none;
 
 .select:hover{
   opacity: 0.7;
-  border-color: #888;
+  border-color: rgb(31, 5, 90);
 }
 
 
   /*button attributes*/
 button {
 cursor: pointer;
-background-color: cornsilk;
-width: 10%;
-color: darkblue;
+background-color: rgb(47, 5, 102);
+color: rgb(236, 236, 245);
 padding: 15px;   
-margin: 10px 0px;
-border: none 
+margin: 10px 0px; 
 border-radius: 20px;
 }
 .button{
-  float: right
-  
-  width: auto; /* to keep proportions */
-height: auto; /* to keep proportions */
+  float: right;
+  position: relative;
+top: 70%;
+left: 50%;
 }
 
 button:hover {   /*Når man hover over button*/
