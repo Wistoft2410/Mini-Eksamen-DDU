@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="../static/styles/stylesheet.css"/>
-    <title>401 du er ikke logget ind!</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block title %}FEJL{% endblock %}
 
-    <div class="topnav">
-        <p><a href ="/"> AcadeMate</a></p>
-    </div>
+{% block content %}
 
+    
+    <div class ="center">
     <h1>Du er ikke logged in :/</h1>
     <h2>401 FEJL</h2>
     <h3>Please log ind ellers får du aldrig adgang til denne side!</h1>
+    </div>
 
-</body>
-</html>

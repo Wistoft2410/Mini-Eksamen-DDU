@@ -38,7 +38,7 @@
         <!-- Her bliver flash beskeder vist til brugeren, disse flash beskeder bliver hentet fra browser sessionen! -->
         {% with messages = get_flashed_messages() %}
             {% if messages %}
-                <div class="middle">
+                <div class="login">
                     {% for message in messages %}
                         <h3>{{ message }}</h3>
                     {% endfor %}

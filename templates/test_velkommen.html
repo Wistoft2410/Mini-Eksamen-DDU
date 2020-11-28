@@ -8,13 +8,15 @@
 
 <p><span id="datetime"></span></p>
 
+<p id ="text1">Her kan du se alle de klasser du er medlem af og du kan så klikke på de test der er tildelt de klasser:</p>
+
 <div class ="container2">
     
     {% if classes|length %}
-        <p>Her kan du se alle de klasser du er medlem af og du kan så klikke på de test der er tildelt de klasser:</p>
+        
         <b></b>
         {% for rel in classes %}
-            <a href="/test/{{ rel.clazz.name }}">Start den test der er tildelt klassen {{ rel.clazz.name }}</a>
+            <a href="/test/{{ rel.clazz.name }}">Start den test der er tildelt klassen: {{ rel.clazz.name }}</a>
             <br>
         {% endfor %}
     {% else %}

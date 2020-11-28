@@ -23,7 +23,6 @@ body {
   text-align: center;
 
 } 
-
 .header {
   background-color: #BDB4BF;
   padding: 20px;
@@ -42,7 +41,6 @@ body {
 
 #loginheader {
   font-size: 100px;
-
 }
 
 .topnav {
@@ -96,8 +94,6 @@ body {
   padding: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-
 .middle a {
   font-size: 20px;
   text-decoration: none;
@@ -228,9 +224,16 @@ button:hover {   /*Når man hover over button*/
   margin: 10px 0px; 
   border-bottom-right-radius: 30px;
   border-top-right-radius: 30px;
-
 }
 
+#text1 {
+  font-size: 20px;
+  font-family: Times New Roman;
+  font-style: normal;
+  font-weight: thick;
+  text-shadow: 1px 1px  #000000;
+  text-align: center;
+}
 
 .container2 {
   float: center;
