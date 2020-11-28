@@ -201,9 +201,13 @@ button:hover {   /*Når man hover over button*/
 }
 
 .container {   /*<div> klassen containers attributes */
+  position: absolute;
   font-family: Times New Roman;
   font-style: normal;
   font-weight: thick;
+  top: 40%;
+  left: 36%;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
   width: 450px;
   height: 350px;
   padding: 30px;   
@@ -231,8 +235,51 @@ button:hover {   /*Når man hover over button*/
   font-family: Times New Roman;
   font-style: normal;
   font-weight: thick;
-  text-shadow: 1px 1px  #000000;
+  text-align: right;
+}
+
+.text {
+  position: absolute;
+  font-size: 60px;
+top: 50%;
+left: 35%;
+  font-family: Times New Roman;
+  font-style: normal;
+  font-weight: thick;
   text-align: center;
+}
+.text1 {
+  position: absolute;
+  font-size: 20px;
+top: 20%;
+left: 30%;
+  font-family: Times New Roman;
+  font-style: normal;
+  font-weight: thick;
+  text-align: left;
+}
+
+.text2 {
+  position: absolute;
+  font-size: 20px;
+top: 50%;
+left: 30%;
+  font-family: Times New Roman;
+  font-style: normal;
+  font-weight: thick;
+  text-align: left;
+}
+
+
+.text a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.text a:hover {
+  color: black;
+  background-color: #ddd;
+
 }
 
 .container2 {
@@ -266,7 +313,7 @@ input[type=text], input[type=password], input[type=email] {
   margin: 8px 0;  
   padding: 12px 20px;   
   display: inline-block;   
-  border: 2px solid lightpink;   
+  border: 2px solid rgb(51, 13, 112);   
   border-radius: 20px;
   box-sizing: border-box;   
 } 

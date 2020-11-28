@@ -5,9 +5,9 @@
 <div class="header">
     <h1>Velkommen {{ name }}</h1>
 </div>
-
-<div class="middle">
-    <p>Dato <span id="datetime"></span></p>
+<p><span id="datetime"></span></p>
+<div class="text1">
+    
     <br>
     <p>
     Du har i alt fire muligheder:
@@ -18,21 +18,20 @@
         <li>Kan du se alle de elever der ikke har fået tildelt en klasse endnu og netop tildel dem en klasse.</li>
     </ol>
     </p>
-    <br>
-    <br>
-
-    <a href="/opret_flere_questions">Lav test</a>
-    <br>
-    <br>
-    <a href="/delete_questions">Slet spørgsmål</a>
-    <br>
-    <br>
-    <a href="/elev_resultat_liste">Se resultater fra alle klasser</a>
-    <br>
-    <br>
-    <a href="/elev_uden_klasse_liste">Se elev uden klasse liste</a>
 
 </div>
+
+<div class=text2>
+
+    <ol>
+
+   <li> <a href="/opret_flere_questions">Lav test</a></li>
+   <li><a href="/delete_questions">Slet spørgsmål</a></li>
+    <li><a href="/elev_resultat_liste">Se resultater fra alle klasser</a></li>
+    <li><a href="/elev_uden_klasse_liste">Se elev uden klasse liste</a></li>
+    </ol>
+</div>
+
 {% endblock %}
 
 {% block scripts %}

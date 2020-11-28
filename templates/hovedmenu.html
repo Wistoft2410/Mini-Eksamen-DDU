@@ -8,7 +8,7 @@
 </div>
 
     {% if current_user.is_authenticated %}
-        <div class="middle">
+        <div class="text">
             {% if current_user.teacher %}
                 <a href="/teacher_startside">Se dine muligheder</a>
             {% else %}
@@ -34,9 +34,5 @@
     <button type="submit">Registrer </button>    
     </form>
 </div>
-
-
-  
-
     {% endif %}
 {% endblock %}
