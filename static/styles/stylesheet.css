@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   border: none;
-
 }
 
 body {
@@ -177,7 +176,7 @@ body {
 /*button attributes*/
 button {
   cursor: pointer;
-  background-color: rgb(47, 5, 102);
+  background-color: #4d749e;
   color: rgb(236, 236, 245);
   padding: 15px;   
   margin: 10px 0px; 
