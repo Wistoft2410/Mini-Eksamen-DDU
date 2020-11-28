@@ -100,7 +100,6 @@ def signup():
         email     = request.form.get('email')
         password  = request.form.get('password')
         password2 = request.form.get('password2')
-        checkbox  = request.form.get('teacher')
 
         if User.select().where(User.email == email).exists():
             return render_template('signup.html', error=False, error2=True)
@@ -110,7 +109,8 @@ def signup():
                                email=email.lower(),
                                # Hash brugerens adgangskode
                                password=bcrypt.generate_password_hash(password).decode("utf-8"),
-                               teacher=(True if checkbox else False))
+                               # Som standard bliver brugere oprettet som elever af sikkerhedsmæssige årsager
+                               teacher=False)
             login_user(user)
             if user.teacher:
                 return redirect(url_for('teacher_startside'))
@@ -306,4 +306,5 @@ def after_request(response):
 
 
 if __name__ == '__main__':
-    app.run(port=int(os.environ.get('PORT', 5000)))
+    app.run()
+
