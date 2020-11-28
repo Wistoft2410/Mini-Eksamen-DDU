@@ -49,12 +49,6 @@ def student_login():
 
 @app.route('/teacher_login', methods=('GET', 'POST'))
 def teacher_login():
-    users = User.select()
-
-    for user in users:
-        print(user.email)
-        print(user.password)
-
     if request.method == 'POST':
         email     = request.form.get('email')
         password  = request.form.get('password')
