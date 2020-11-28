@@ -18,10 +18,16 @@
     </head>
     <body>
         <div class="topnav">
-            <p><a href="/">Om AcadeMate</a></p>
-            <p><a href="/FAQ">FAQ</a></p>
-            <p><a href="/teacher_login">Er du lærer?</a></p>
-            <p><a href="/student_login">Elev</a></p>
+            {% if current_user.is_authenticated %}
+                <p><a href="/logud">Log ud</a></p>
+                <p><a href="/">Om AcadeMate</a></p>
+                <p><a href="/FAQ">FAQ</a></p>
+            {% else %}
+                <p><a href="/">Om AcadeMate</a></p>
+                <p><a href="/FAQ">FAQ</a></p>
+                <p><a href="/teacher_login">Er du lærer?</a></p>
+                <p><a href="/student_login">Elev</a></p>
+            {% endif %}
             <a href="/" style="all: revert"><img src="../../static/images/AcadeMate.png" alt="am"></a>
         </div>
         {% if not request.endpoint == "home" and student_login %}
@@ -50,11 +56,11 @@
         {% block content %}{% endblock %}
 
         <!-- Hvis brugeren er logget ind så vis log ud knappen/footeren! -->
-        {% if current_user.is_authenticated %}
+        <!--{% if current_user.is_authenticated %}
             <div class="footer">
                 <a href="/logud">Log ud</a>
             </div>
-        {% endif %}
+        {% endif %}-->
 
         <!-- block scripts er der hvor alt JavaScript koden kommer til at være! -->
         {% block scripts %}{% endblock %}
