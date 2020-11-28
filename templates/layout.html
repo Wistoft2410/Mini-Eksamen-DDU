@@ -8,10 +8,7 @@
         <meta name="description" content="This is a student website!">
         <!-- TODO: Vi skal have et nyt "favicon" billede her! -->
         {% if request.endpoint == "testen" %}
-            <link rel="icon" type="image/png" sizes="32x32" href="../../static/images/logo2.png">
-            <link rel="stylesheet" href="../../static/styles/stylesheet.css">
-        {% else %}
-            <link rel="icon" type="image/png" sizes="32x32" href="../static/images/logo2.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="../../static/images/logo2.png"> <link rel="stylesheet" href="../../static/styles/stylesheet.css"> {% else %} <link rel="icon" type="image/png" sizes="32x32" href="../static/images/logo2.png">
             <link rel="stylesheet" href="../static/styles/stylesheet.css">
         {% endif %}
         <title>{% block title %}{% endblock %}</title>
@@ -25,7 +22,7 @@
             <p><a href="/FAQ">FAQ</a></p>
             <p><a href="/teacher_login">Er du lærer?</a></p>
             <p><a href="/student_login">Elev</a></p>
-            <img src="../../static/images/AcadeMate.png" alt="am">
+            <a href="/" style="all: revert"><img src="../../static/images/AcadeMate.png" alt="am"></a>
         </div>
         {% if not request.endpoint == "home" and student_login %}
         <div class="header">

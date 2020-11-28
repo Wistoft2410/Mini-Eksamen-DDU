@@ -1,89 +1,87 @@
-body {
-  height: 100vh;
-}
-
 * {
   margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-		border: none;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
 
 }
 
 body {
+  height: 100vh;
   background: #7F89c4; /*baggrundsfarve*/
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /*Font familie til baggrunden*/
   margin: 0;
-  }  
+}  
 
 .welcome {
-float: right;
-font-family: 'Times New Roman', Times, serif;
-font-size: 40px;
-width: 40%;
-height: 40%;
-color: white;
-text-align: center;
+  float: right;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 40px;
+  width: 40%;
+  height: 40%;
+  color: white;
+  text-align: center;
 
 } 
 
 .header {
-background-color: #BDB4BF;
-padding: 20px;
-text-align: center;
+  background-color: #BDB4BF;
+  padding: 20px;
+  text-align: center;
 } 
 
 #ab {
-float: left;
-position: absolute;
-top: 0;
-bottom: 0;
-width: auto; /* to keep proportions */
-height: auto; /* to keep proportions */
-margin: auto auto 0; 
+  float: left;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: auto; /* to keep proportions */
+  height: auto; /* to keep proportions */
+  margin: auto auto 0; 
 }
 
 #loginheader {
   font-size: 100px;
-  
+
 }
 
 .topnav {
-overflow: hidden;
-background-color: #080957;
+  overflow: hidden;
+  background-color: #080957;
 }
 
 .topnav img {
-float: left;
+  float: left;
 }
 
 .topnav a  {
-float: right;
-text-decoration: none;
-font-family: 'Times New Roman', Times, serif;
-font-size: 25px;
-border: 1px;
-border-left-style: solid;
-text-align: center;
-padding: 25px 20px;
-color: #EFF2EF;
+  float: right;
+  text-decoration: none;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+  border: 1px;
+  border-left-style: solid;
+  text-align: center;
+  padding: 25px 20px;
+  color: #EFF2EF;
 }
+
 .topnav p  {
-float: right; 
-display: block;
-text-align: center;
-padding: 20px 0px;
-padding-top: 0px;
-padding-bottom: 0px;
-color: #EFF2EF;
-margin: 0;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  float: right; 
+  display: block;
+  text-align: center;
+  padding: 20px 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  color: #EFF2EF;
+  margin: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .topnav a:hover {
   color: black;
   background-color: #ddd;
-  }
+}
 
 .info{
   float: right;
@@ -98,6 +96,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 
 .middle a {
   font-size: 20px;
@@ -131,10 +130,11 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2px 2px;
   color: #EFF2EF;
 }
+
 .footer a:hover {
   color: black;
   background-color: #ddd;
-  }
+}
 
 .footer{
   position: fixed;
@@ -150,24 +150,25 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .select {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-border: 3px solid #73AD21
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid #73AD21
 }
 
 .select select{
-background-color: #3f78a7;
-color: white;
-padding: 12px;
-/*width: 250px;*/
-font-size: 20px;
-box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
--webkit-appearance: button;
-appearance: button;
-outline: none;
+  background-color: #3f78a7;
+  color: white;
+  padding: 12px;
+  /*width: 250px;*/
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
 }
+
 .select select option{
   padding: 30px;
 }
@@ -177,34 +178,36 @@ outline: none;
   border-color: rgb(31, 5, 90);
 }
 
-
-  /*button attributes*/
+/*button attributes*/
 button {
-cursor: pointer;
-background-color: rgb(47, 5, 102);
-color: rgb(236, 236, 245);
-padding: 15px;   
-margin: 10px 0px; 
-border-radius: 20px;
+  cursor: pointer;
+  background-color: rgb(47, 5, 102);
+  color: rgb(236, 236, 245);
+  padding: 15px;   
+  margin: 10px 0px; 
+  border-radius: 20px;
 }
+
 .button1{
   float: right;
   position: absolute;
-top: 80%;
-left: 78%;
+  top: 80%;
+  left: 78%;
 }
+
 .button2 {
-float: right;
-position: relative;
+  float: right;
+  position: relative;
 }
 
 button:hover {   /*Når man hover over button*/
   opacity: 0.7;   
 }
+
 .container {   /*<div> klassen containers attributes */
   font-family: Times New Roman;
-    font-style: normal;
-    font-weight: thick;
+  font-style: normal;
+  font-weight: thick;
   width: 450px;
   height: 350px;
   padding: 30px;   
@@ -212,6 +215,7 @@ button:hover {   /*Når man hover over button*/
   border-radius: 20px;
   margin: auto;
 }  
+
 #datetime {
   position: absolute;
   width: auto;
@@ -227,6 +231,7 @@ button:hover {   /*Når man hover over button*/
 
 }
 
+
 .container2 {
   float: center;
   position: relative;
@@ -240,6 +245,7 @@ button:hover {   /*Når man hover over button*/
   padding: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .center {
   margin: 0;
   position: absolute;
@@ -251,8 +257,8 @@ button:hover {   /*Når man hover over button*/
 
 input[type=text], input[type=password], input[type=email] {   
   font-family: Times New Roman;
-    font-style: normal;
-    font-weight: thick;
+  font-style: normal;
+  font-weight: thick;
   width: 100%;   
   margin: 8px 0;  
   padding: 12px 20px;   
@@ -264,11 +270,8 @@ input[type=text], input[type=password], input[type=email] {
 
 h1 {
   text-align: center;
-    font-family: Times New Roman;
-      font-style: normal;
-      font-weight: normal;
+  font-family: Times New Roman;
+  font-style: normal;
+  font-weight: normal;
   color: rgba(255,255,255,1);
-  
-
 }
-
