@@ -31,13 +31,13 @@
             <a href="/" style="all: revert"><img src="../../static/images/AcadeMate.png" alt="am"></a>
         </div>
         {% if not request.endpoint == "home" and student_login %}
-        <div class="header">
-        {% if request.endpoint == "testen" %}
-            <img src="../../static/images/logo2.png" alt="logo" width="500" height="166" loading="eager">
-        {% else %}
-            <img src="../static/images/logo2.png" alt="logo" width="500" height="166" loading="eager">
-        {% endif %}
-        </div>
+            <div class="header">
+                {% if request.endpoint == "testen" %}
+                    <img src="../../static/images/logo2.png" alt="logo" width="500" height="166" loading="eager">
+                {% else %}
+                    <img src="../static/images/logo2.png" alt="logo" width="500" height="166" loading="eager">
+                {% endif %}
+            </div>
         {% endif %}
 
         
