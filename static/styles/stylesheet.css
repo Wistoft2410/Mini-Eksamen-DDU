@@ -81,6 +81,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .topnav a:hover {
+  color: black;
   background-color: #ddd;
   }
 
@@ -107,6 +108,21 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 10px;
 }
 
+.footer a {
+  float: right;
+  text-decoration: none;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+  border: 1px;
+  border-left-style: solid;
+  text-align: center;
+  padding: 2px 2px;
+  color: #EFF2EF;
+}
+.footer a:hover {
+  color: black;
+  background-color: #ddd;
+  }
 
 .footer{
   position: fixed;
@@ -114,10 +130,11 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 100%;
   float: center;
   text-align: center;
-  border: 3px solid #73AD21;
+  border-radius: 2px;
   padding: 10px 0;
   background-image: url ("fot.png");
-  background-color: lightslategrey;
+  background-color: #080957;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
 }
 
 .select {
