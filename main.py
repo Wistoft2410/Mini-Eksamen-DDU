@@ -201,8 +201,8 @@ def retrive_user_test_data(user):
         "question": data.question.questionText, 
         "answer1": data.question.answer1, 
         "answer2": data.question.answer2, 
-        "correctAnswer": data.question.yesOrNo, 
-        "studentsAnswer": data.correctAnswer
+        "correctAnswer": "Svar nr. 1" if data.question.yesOrNo else "Svar nr. 2", 
+        "studentsAnswer": "Svar nr. 1" if data.correctAnswer else "Svar nr. 2"
     } for data in list(question_data)]
 
     return retrieved_question_data
