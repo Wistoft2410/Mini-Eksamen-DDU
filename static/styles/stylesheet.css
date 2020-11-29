@@ -42,6 +42,20 @@ body {
   font-size: 100px;
 }
 
+.center1 {
+float: center;
+text-align: center;
+
+}
+
+.overskrift{
+  font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    float: center;
+    color: white;
+  text-align: center;
+}
+
 .topnav {
   overflow: hidden;
   background-color: #080957;

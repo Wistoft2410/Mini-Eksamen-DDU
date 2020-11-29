@@ -2,10 +2,13 @@
 {% block title %}Slet spørgsmål{% endblock %}
 
 {% block content %}
+<div class ="overskrift">
     <h3>Slet spørgsmål:</h3>
-
+</div>
     {% for class in classes %}
-        <h3>Klasse: {{ class.name }}</h3>
+
+    <div class ="center1">
+        <h2>Klasse: {{ class.name }}</h2>
 
         {% if class.questions|length %}
             {% for question in class.questions %}
@@ -20,5 +23,7 @@
             <p>Der er ikke flere spørgsmål i denne klasse</p>
         {% endif %}
         <br>
+
+    </div>
     {% endfor %}
 {% endblock %}
