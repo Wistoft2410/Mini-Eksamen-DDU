@@ -2,13 +2,19 @@
 {% block title %}Elev liste uden nogen klasser{% endblock %}
 
 {% block content %}
+<div class ="center1">
     <h3>Følgende elever har ikke fået tildelt en klasse:</h3>
     <h4>Kan du ikke finde den klasse du gerne vil tildele? Lav klassen her:</h4>
+
+<div class ="button3">
     <form action="/opret_klasse" method="POST">
         <input type="text" name="klasse" placeholder="klasse" required>
-        <button style="display: block" type="submit" id="knap">Opret klasse</button>
+        <button type="submit" id="knap">Opret klasse</button>
     </form>
-    <br>
+</div>
+</div>
+<br><br><br><br><br><br><br><br><br><br>
+
     {% for user in users %}
         <p>Elevens navn: <strong>{{ user.username }}</strong></p> 
         <p>Elevens email: <strong>{{ user.email }}</strong></p> 
@@ -22,11 +28,13 @@
             </select>
             <button style="display: block" type="submit" id="knap">Tildel klasse</button>
         </form>
-        <br>
         <p>Kan du ikke genkende denne bruger, tror du det er en bot/scammer osv?</p>
         <form action="/delete_user" method="POST">
             <input type="hidden" name="elev_id" value="{{ user.id }}" required>
             <button style="display: block" type="submit" id="knap">Slet bruger</button>
         </form>
+        <br><br><br><br>
+        
     {% endfor %}
+
 {% endblock %}

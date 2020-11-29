@@ -41,11 +41,18 @@ body {
 #loginheader {
   font-size: 100px;
 }
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -66%);
+  transform: translate(-50%, -66%);
+}
 
 .center1 {
-float: center;
-text-align: center;
 
+text-align: left;
 }
 
 .overskrift{
@@ -157,7 +164,6 @@ text-align: center;
   background-color: #080957;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
 }
-
 .select {
   position: absolute;
   top: 100%;
@@ -258,6 +264,11 @@ button {
   float: right;
   position: relative;
   top: 10%;
+}
+
+.button3{
+float: left;
+width: 15%;
 }
 
 button:hover {   /*Når man hover over button*/
@@ -372,14 +383,6 @@ left: 30%;
   color: black;
   background-color: #ddd;
 
-}
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -66%);
-  transform: translate(-50%, -66%);
 }
 
 input[type=text], input[type=password], input[type=email] {   
