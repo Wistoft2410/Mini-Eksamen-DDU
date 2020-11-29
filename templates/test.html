@@ -3,10 +3,10 @@
 
 {% block content %}
     {% if questions|length %}
-        <div class="container2">
-            <div class="center">
-                <h1>svar på testen</h1>
-            </div>
+        <div class="overskrft">
+       
+                <h1>Svar på testen</h1>
+            
         </div>
 
         <!-- Grunden til at denne form ikke har nogen action attribute -->
@@ -14,7 +14,7 @@
         <!-- Det er det browseren/html koden gør som standard når der ikke er nogen action attribute angivet i en form! -->
         <form method='POST'>
             {% for question in questions %}
-            <div style="width: 270px;">
+            <div class="center2">
                 <p>{{ question.questionText }}</p>
                 <label for="answer">Svar: </label>
                 <input type="hidden" name="id[]" value="{{ question.id }}" required>
@@ -26,14 +26,13 @@
             </div>
             <hr>
             {% endfor %}
-
+            <div class ="center2">
             <button type="submit" id="knap">slut test</button>	
+        </div>
         </form>
     {% else %}
-        <div class="container2">
-            <div class="center">
+        <div class="overskrft">
                 <h1>Du har allerede svaret på alle de spørgsmål som din lærer har tildelt dig i klassen {{ classname }}</h1>
-            </div>
         </div>
     {% endif %}
 {% endblock %}

@@ -51,7 +51,6 @@ body {
 }
 
 .center1 {
-
 text-align: left;
 }
 
@@ -262,7 +261,6 @@ button {
   position: absolute;
   top: 80%;
   left: 78%;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
 }
 
 .button2 {
@@ -274,6 +272,14 @@ button {
 .button3{
 float: left;
 width: 15%;
+}
+
+.button4{
+  float: right;
+  position: absolute;
+  top: 71%;
+  left: 57%;
+
 }
 
 button:hover {   /*Når man hover over button*/
@@ -310,6 +316,18 @@ button:hover {   /*Når man hover over button*/
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.container2 a{
+  color: rgb(79, 17, 250);
+  font-size: 20px;
+  text-decoration: none;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.container2 a:hover{
+  opacity: 0.7;
+  border-color: rgb(31, 5, 90);
+}
+
 #datetime {
   position: absolute;
   width: auto;
@@ -329,7 +347,7 @@ button:hover {   /*Når man hover over button*/
   font-family: Times New Roman;
   font-style: normal;
   font-weight: thick;
-  text-align: right;
+  text-align: center;
 }
 
 .text {
