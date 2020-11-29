@@ -2,8 +2,10 @@
 {% block title %}Teacher question creation{% endblock %}
 
 {% block content %}
-<h1>Lærer spørgsmåls form</h1>
 
+<div class ="header">
+<h1>Lav spørgsmål til testen</h1>
+</div>
 <!-- Grunden til at denne form ikke har nogen action attribute -->
 <!-- ER fordi at den bare skal sende request'en til det url som denne form allerede er på! -->
 <!-- Det er det browseren/html koden gør som standard når der ikke er nogen action attribute angivet i en form! -->
@@ -12,14 +14,14 @@
         {% if error_msg %}
             <p>{{ error_msg }}</p>
         {% endif %}
-
-        <labal>Klasse:</label>
+<div class ="select2">
+        <labal> <p>Klasse:</p></label>
         <select name="klasse_id" required>
             {% for class in classes %}
                 <option value="{{ class.id }}">{{ class.name }}</option>
             {% endfor %}
         </select>
-        <br><br>
+    </div>
 
         <label>Spørgsmål</label>
         <input type="text" placeholder="spørgsmål" name="spørgsmål" required><br>
@@ -33,14 +35,20 @@
         <input type="text" placeholder="svar 2" name="svar2" required><br>
         <br>
 
-        <label>Hvad er det rigtige svar: </label>
+
+        <div class ="select">
+        <label> <p>Hvad er det rigtige svar: </p></label>
         <select name="correctAnswer">
             <option value="svar1">Svar 1</option>
             <option value="svar2">Svar 2</option>
         </select>
-        <br><br>
+    </div>
 
-        <button type="submit" id="knap">Lav spørgsmål</button>
+    <div class="button2">    
+        <button type="submit" id="knap">Lav spørgsmål</button> 
+    </div>
+
+        
     </div>
 </form>
 {% endblock %}

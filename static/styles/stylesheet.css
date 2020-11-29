@@ -146,13 +146,13 @@ body {
 
 .select {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 3px solid #73AD21
+  top: 100%;
+  left: 0%;
+ border-radius: 15px;
 }
 
 .select select{
+  border-radius: 15px;
   background-color: #3f78a7;
   color: white;
   padding: 12px;
@@ -162,15 +162,64 @@ body {
   -webkit-appearance: button;
   appearance: button;
   outline: none;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
 }
 
 .select select option{
+  border-radius: 15px;
   padding: 30px;
 }
 
-.select:hover{
+.select select:hover{
   opacity: 0.7;
   border-color: rgb(31, 5, 90);
+}
+
+.select p {
+  font-size: 20px;
+  font-family: Times New Roman;
+  font-style: normal;
+  font-weight: thick;
+  text-align: right;
+}
+
+.select2 {
+  position: absolute;
+  top: 0%;
+  right: 100%;
+ border-radius: 15px;
+}
+
+.select2 select{
+  border-radius: 15px;
+  background-color: #283036;
+  color: white;
+  padding: 12px;
+  /*width: 250px;*/
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.select2 select option{
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.select2 select:hover{
+  opacity: 0.7;
+  border-color: rgb(31, 5, 90);
+}
+
+.select2 p {
+  font-size: 20px;
+  font-family: Times New Roman;
+  font-style: normal;
+  font-weight: thick;
+  text-align: right;
 }
 
 /*button attributes*/
@@ -188,11 +237,13 @@ button {
   position: absolute;
   top: 80%;
   left: 78%;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
 }
 
 .button2 {
   float: right;
   position: relative;
+  top: 10%;
 }
 
 button:hover {   /*Når man hover over button*/
@@ -204,7 +255,7 @@ button:hover {   /*Når man hover over button*/
   font-family: Times New Roman;
   font-style: normal;
   font-weight: thick;
-  top: 40%;
+  top: 35%;
   left: 36%;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
   width: 450px;
@@ -214,6 +265,20 @@ button:hover {   /*Når man hover over button*/
   border-radius: 20px;
   margin: auto;
 }  
+
+.container2 {
+  float: center;
+  position: relative;
+  top: 10%;
+  left: 34%;
+  background-color: rgb(255, 255, 255);
+  text-align: left;
+  width: 400px;
+  height: 300px;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 #datetime {
   position: absolute;
@@ -261,14 +326,28 @@ left: 30%;
 .text2 {
   position: absolute;
   font-size: 20px;
-top: 50%;
-left: 30%;
+  top: 50%;
+  left: 30%;
   font-family: Times New Roman;
   font-style: normal;
   font-weight: thick;
   text-align: left;
 }
 
+.text2 a {
+  text-decoration: none;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+  border: 1px;
+  border-right-style: solid;
+  text-align: center;
+  padding: 2px 2px;
+  color: #fde8e8;
+}
+.text2 a:hover{
+  color: black;
+  background-color: #ddd;
+}
 
 .text a {
   color: #ffffff;
@@ -280,21 +359,6 @@ left: 30%;
   background-color: #ddd;
 
 }
-
-.container2 {
-  float: center;
-  position: relative;
-  top: 10%;
-  left: 34%;
-  background-color: rgb(255, 255, 255);
-  text-align: left;
-  width: 400px;
-  height: 300px;
-  border-radius: 20px;
-  padding: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
 .center {
   margin: 0;
   position: absolute;
