@@ -1,4 +1,4 @@
-# Mini-Eksamen-DDU ## Digital Design
+# Mini-Eksamen-DDU # Digital Design
 ### Gruppe: Anders, Simon og Marcus Hansen fra L 3d2 og Adam fra L 3i
 ### Deadline: 	sø 29/11 22:00
 ### Navn på hjemmeside/projekt: AcadeMate
